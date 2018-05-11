@@ -61,6 +61,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+      $this->view->params['noticias'] = '';
+        return $this->render('index');
+    }
+
+    /**
+     * Displays interno.
+     *
+     * @return string
+     */
+    public function actionIndex2()
+    {
+      $this->layout = 'interno';
+      $this->view->params['noticias'] = '';
         return $this->render('index');
     }
 

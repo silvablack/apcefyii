@@ -20,10 +20,11 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/bootstrap/bootstrap.min.css',
         'css/main.css',
         'css/icomoon.css',
         'css/animate.css',
+        'css/transition.css',
         'css/font-awesome.min.css',
         'css/style.css',
         'css/color.css',
@@ -51,7 +52,7 @@ class AppAsset extends AssetBundle
       'js/main.js'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        //'yii\web\YiiAsset',
+        //'yii\bootstrap\BootstrapAsset',
     ];
 }
