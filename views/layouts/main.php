@@ -7,6 +7,7 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\StringHelper;
 
 AppAsset::register($this);
 ?>
@@ -229,9 +230,9 @@ AppAsset::register($this);
   							<div class="double-bounce2"></div>
   						</div>
   					<ul id="ticker" class="ticker">
-  							<li><span>Últimas Notícias:</span>Titulo: Descricao da noticia (80 chars)</li>
-                <li><span>Últimas Notícias:</span>Titulo: Descricao da noticia (80 chars)</li>
-                <li><span>Últimas Notícias:</span>Titulo: Descricao da noticia (80 chars)</li>
+              <?php foreach($this->params['noticias'] as $n): ?>
+  							<li><span>Últimas Notícias:</span><?= StringHelper::truncate($n['titulo'],20) ?>: <?= StringHelper::truncate($n['noticia'],80) ?></li>
+              <?php endforeach ?>
   					</ul>
   				</div>
   			</div>
