@@ -79,12 +79,12 @@ AppAsset::register($this);
   					<!-- Nav List -->
   					<ul class="nav-list pull-right">
   						<li>
-  								<a href="../index.php">Home</a>
-  								<ul>
-  									<li><a href="tb_atestadoPendente.php">Atestado Pendentes</a></li>
-  									<li><a href="tb_atestadook.php">Atestado OK</a></li>
-  									<li><a href="representantes.php">Representantes</a></li>
-  								</ul>
+                <?= Html::a('Home', ['site/index']); ?>
+                <ul>
+                  <li><?= Html::a('Atestado Pendentes', ['site/atestado', 'param'=>'PEN']); ?></li>
+                  <li><?= Html::a('Atestado OK', ['site/atestado', 'param'=>'OK']); ?></li>
+                  <li><?= Html::a('Representantes', ['site/representantes']); ?></li>
+                </ul>
   						</li>
   						<li class="mega-dropdown">
   								<a href="#">Notícias</a>
@@ -94,16 +94,34 @@ AppAsset::register($this);
   											<div class="blog-categories">
   											<h2>Categorias</h2>
   												<ul class="blog-categories-list">
-  													<li><a href="../noticia.php?categoria=1">Livre Prata</a></li>
-  								    			<li><a href="../noticia.php?categoria=2">Livre Ouro</a></li>
-  								    			<li><a href="../noticia.php?categoria=3">Quarentão</a></li>
-  								    			<li><a href="../noticia.php?categoria=4">Cinquentão</a></li>
+                            <li><?= Html::a('Livre Prata', ['site/noticias','categoria'=>1]); ?></li>
+  								    			<li><?= Html::a('Livre Ouro', ['site/noticias','categoria'=>2]); ?></li>
+  								    			<li><?= Html::a('Quarentão', ['site/noticias','categoria'=>3]); ?></li>
+  								    			<li><?= Html::a('Cinquentão', ['site/noticias','categoria'=>4]); ?></li>
   												</ul>
   											</div>
   										</div>
   										<div class="col-lg-9 col-md-9 col-sm-9">
   											<div id="mega-blog-slider" class="mega-blog-slider">
-                          <!-- NOTCIAS -->
+                          <?php foreach($this->params['noticias'] as $v): ?>
+                          <!-- Post Img -->
+  												<div class="item">
+  													<!-- Post Img -->
+  													<div class="large-post-img">
+  														<a class="newsimagelink" href="<?= Yii::getAlias('@web') ?>/site/noticia?id=<?php echo $v['id']?>">
+  															<img style="height:130px;" src="<?= Yii::getAlias('@web') ?>/images/gallery/<?php echo $v['src']; ?>" alt=""></a>
+  													</div>
+  													<!-- Post Img -->
+  													<!-- Post Detail -->
+  													<div class="large-post-detail style-3 p-0">
+  														<span class="red-color"><a class="newslink" href="<?= Yii::getAlias('@web') ?>/site/noticia?id=<?php echo $v['id']?>">
+  															<?php echo substr($v['titulo'],0,20) ?></a></span>
+  														<p style="word-wrap: break-word;"><?php echo substr(strip_tags($v['noticia']),0,50) ?></p>
+  													</div>
+  													<!-- Post Detail -->
+  												</div>
+  												<!-- Post Img -->
+                        <?php endforeach; ?>
   											</div>
   										</div>
   									</li>
@@ -112,53 +130,53 @@ AppAsset::register($this);
   						<li>
   								<a href="#">Campeonato</a>
   								<ul>
-  									<li><a href="ficha.pdf">Formulário</a></li>
-  									<li><a href="futsal_2012.php">Futsal 2012</a></li>
-  									<li><a href="futsal_2013.php">Futsal 2013</a></li>
-  									<li><a href="futsal_2014.php">Futsal 2014</a></li>
-  									<li><a href="futsal_2015.php">Futsal 2015</a></li>
-  									<li><a href="society_2011.php">Society 2011</a></li>
-  									<li><a href="society_2012.php">Society 2012</a></li>
-  									<li><a href="society_2013.php">Society 2013</a></li>
-  									<li><a href="society_2014.php">Society 2014</a></li>
-  									<li><a href="society_2015.php">Society 2015</a></li>
+                    <li><?= Html::a('Formulário',['site/ficha']); ?></li>
+  									<li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
+  									<li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
+  									<li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
+  									<li><?= Html::a('Futsal 2015',['site/futsal','ano'=>2015]); ?></li>
+  									<li><?= Html::a('Society 2011',['site/society','ano'=>2011]); ?></li>
+  									<li><?= Html::a('Society 2012',['site/society','ano'=>2012]); ?></li>
+  									<li><?= Html::a('Society 2013',['site/society','ano'=>2013]); ?></li>
+  									<li><?= Html::a('Society 2014',['site/society','ano'=>2014]); ?></li>
+  									<li><?= Html::a('Society 2015',['site/society','ano'=>2015]); ?></li>
   								</ul>
   						</li>
   						<li>
   								<a href="#">Tabelas</a>
   								<ul>
-  									<li><a href="tabela_geral_livre_rodada1.php">Livre-série Ouro</a></li>
-  									<li><a href="tabela_geral_livre_rodada1p.php">Livre-série Prata</a></li>
-  									<li><a href="tabela_geral_livre_rodada1q.php">Quarentão</a></li>
-  									<li><a href="tabela_geral_livre_rodada1c.php">Cinquentão</a></li>
+                    <li><?= Html::a('Livre Prata',['site/tabelageral','categoria'=>1]) ?></li>
+  									<li><?= Html::a('Livre Ouro',['site/tabelageral','categoria'=>2]) ?></li>
+  									<li><?= Html::a('Quarentão',['site/tabelageral','categoria'=>3]) ?></li>
+  									<li><?= Html::a('Cinquentão',['site/tabelageral','categoria'=>4]) ?></li>
   								</ul>
   						</li>
   						<li>
   								<a href="#">Disciplina</a>
   								<ul>
-  									<li><a href="tabela_julgamento.php">Resultado Julgamento</a></li>
-  									<li><a href="tabela_pendurados.php">Atleta Pendurado</a></li>
-  									<li><a href="tabela_suspensos.php">Atleta Suspenso</a></li>
+                    <li><?= Html::a('Resultado Julgamento',['site/disciplina','param'=>'julgamento']) ?></li>
+  									<li><?= Html::a('Atleta Pendurado',['site/disciplina','param'=>'pendurados']) ?></li>
+  									<li><?= Html::a('Atleta Suspenso',['site/disciplina','param'=>'suspensos']) ?></li>
   								</ul>
   						</li>
   						<li>
   								<a href="#">Scouts</a>
   								<ul>
-  									<li><a href="classificacaoprincipal.php">Livre</a></li>
-  									<li><a href="classificacaoquarentao.php">Quarentão</a></li>
-  									<li><a href="classificacaocinquentao.php">Cinquentão</a></li>
+                    <li><?= Html::a('Livre',['site/classificacao','param'=>'livre']) ?></li>
+  									<li><?= Html::a('Quarentão',['site/classificacao','param'=>'quarentao']) ?></li>
+  									<li><?= Html::a('Cinquentão',['site/classificacao','param'=>'cinquentao']) ?></li>
   								</ul>
   						</li>
   						<li><a href="#">Regulamento</a>
   							<ul>
-  								<li><a href="RGC.pdf">RGC</a></li>
-  								<li><a href="disputafutsal.pdf">Anexo-1 Futsal</a></li>
-  								<li><a href="disputasociety2016.pdf">Anexo-2 Society</a></li>
-  								<li><a href="cde.pdf">CDE</a></li>
-  								<li><a href="tbgeral.pdf">Tabela Geral</a></li>
+                  <li><?= Html::a('RGC',['site/pdf','param'=>'RGC']) ?></li>
+  								<li><?= Html::a('Anexo-1 Futsal',['site/pdf','param'=>'ANEXO1']) ?></li>
+  								<li><?= Html::a('Anexo-2 Society',['site/pdf','param'=>'ANEXO2']) ?></li>
+  								<li><?= Html::a('CDE',['site/pdf','param'=>'CDE']) ?></li>
+  								<li><?= Html::a('Tabela Geral',['site/tabelageral']) ?></li>
   							</ul>
   						</li>
-  						<li><a href="contato.php">Contato</a><li>
+  						<li><?= Html::a('Contato',['site/contact']) ?><li>
   					</ul>
   					<!-- Nav List -->
 
@@ -198,7 +216,7 @@ AppAsset::register($this);
   <h5>Avalie-nos</h5>
 
   <!-- Form -->
-  <form id="contact-form" class="contact-form col-sm-6" action="enquete.php" method="get" onsubmit="return validaForm()" target="voto">
+  <form id="contact-form" class="contact-form col-sm-6" action="<?= Yii::getAlias('@web') ?>/site/enquete" method="get" onsubmit="return validaForm()" target="voto">
   <table style="color:white;">
   <tbody>
     <tr>
@@ -228,27 +246,26 @@ AppAsset::register($this);
   <div class="column-widget h-white">
   <h5>INFORMAÇÃO</h5>
   <ul class="footer-links">
-  <li><a href="../index.php">Home</a></li>
-  <li><a href="contato.php">Contato</a></li>
-  <li><a href="tbgeral.pdf">Tabela Geral</a></li>
-  <li><a href="ficha.pdf">Formulário</a></li>
-  <li><a href="futsal_2012.php">Futsal 2012</a></li>
-  <li><a href="futsal_2013.php">Futsal 2013</a></li>
-  <li><a href="futsal_2014.php">Futsal 2014</a></li>
-  <li><a href="futsal_2015.php">Futsal 2015</a></li>
-  <li><a href="society_2011.php">Society 2011</a></li>
-  <li><a href="society_2012.php">Society 2012</a></li>
-  <li><a href="society_2013.php">Society 2013</a></li>
-  <li><a href="society_2014.php">Society 2014</a></li>
-  <li><a href="society_2015.php">Society 2015</a></li>
-  <li><a href="tabela_julgamento.php">Resultado Julgamento</a></li>
-  <li><a href="tabela_pendurados.php">Atleta Pendurado</a></li>
-  <li><a href="tabela_suspensos.php">Atleta Suspenso</a></li>
-  <li><a href="RGC.pdf">RGC</a></li>
-  <li><a href="disputafutsal.pdf">Anexo-1 Futsal</a></li>
-  <li><a href="disputasociety2016.pdf">Anexo-2 Society</a></li>
-  <li><a href="cde.pdf">CDE</a></li>
-  <li><a href="tbgeral.pdf">Tabela Geral</a></li>
+    <li><?= Html::a('Home', ['site/index']); ?></li>
+    <li><?= Html::a('Contato',['site/contact']) ?></li>
+    <li><?= Html::a('Formulário',['site/ficha']); ?></li>
+      <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
+      <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
+      <li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
+      <li><?= Html::a('Futsal 2015',['site/futsal','ano'=>2015]); ?></li>
+      <li><?= Html::a('Society 2011',['site/society','ano'=>2011]); ?></li>
+      <li><?= Html::a('Society 2012',['site/society','ano'=>2012]); ?></li>
+      <li><?= Html::a('Society 2013',['site/society','ano'=>2013]); ?></li>
+      <li><?= Html::a('Society 2014',['site/society','ano'=>2014]); ?></li>
+      <li><?= Html::a('Society 2015',['site/society','ano'=>2015]); ?></li>
+      <li><?= Html::a('Resultado Julgamento',['site/disciplina','param'=>'julgamento']) ?></li>
+      <li><?= Html::a('Atleta Pendurado',['site/disciplina','param'=>'pendurados']) ?></li>
+      <li><?= Html::a('Atleta Suspenso',['site/disciplina','param'=>'suspensos']) ?></li>
+      <li><?= Html::a('RGC',['site/pdf','param'=>'RGC']) ?></li>
+    <li><?= Html::a('Anexo-1 Futsal',['site/pdf','param'=>'ANEXO1']) ?></li>
+    <li><?= Html::a('Anexo-2 Society',['site/pdf','param'=>'ANEXO2']) ?></li>
+    <li><?= Html::a('CDE',['site/pdf','param'=>'CDE']) ?></li>
+    <li><?= Html::a('Tabela Geral',['site/tabelageral']) ?></li>
   </ul>
   </div>
   </div>
@@ -266,7 +283,7 @@ AppAsset::register($this);
   </ul>
   </div>
   <div style="padding-bottom:10px;">
-    <h5><a href="painel/index.php" style="color:#FFF"><span class="caret"></span> Administração</a></h5>
+    <h5><?= Html::a('<span class="caret"></span> Administração',['painel/index'],['style'=>'color:#fff']); ?></h5>
   </div>
   </div>
   </div>
@@ -296,76 +313,76 @@ AppAsset::register($this);
 
   <!-- Slide Menu -->
   <nav id="menu" class="responive-nav">
-  <a class="r-nav-logo" href="../index.php"><img src="../images/logo-apcef.png" style="margin-left: 5px;" alt=""></a>
+  <a class="r-nav-logo" href="<?= Yii::getAlias('@web') ?>/site/index"><img src="<?= Yii::getAlias('@web') ?>/images/logo-apcef.png" style="margin-left: 5px;" alt=""></a>
   <ul class="respoinve-nav-list">
   <li>
   <a data-toggle="collapse" href="#list-1"><i class="pull-right fa fa-angle-down"></i>Home</a>
   <ul class="collapse" id="list-1">
-  <li><a href="tb_atestadoPendente.php">Atestado Pendentes</a></li>
-  <li><a href="tb_atestadook.php">Atestado OK</a></li>
-  <li><a href="representantes.php">Representantes</a></li>
+    <li><?= Html::a('Atestado Pendentes', ['site/atestado', 'param'=>'PEN']); ?></li>
+    <li><?= Html::a('Atestado OK', ['site/atestado', 'param'=>'OK']); ?></li>
+    <li><?= Html::a('Representantes', ['site/representantes']); ?></li>
   </ul>
   </li>
   <li>
   <a data-toggle="collapse" href="#list-2"><i class="pull-right fa fa-angle-down"></i>Notícias</a>
   <ul class="collapse" id="list-2">
-  <li><a href="../noticia.php?categoria=1">Livre Prata</a></li>
-  <li><a href="../noticia.php?categoria=2">Livre Ouro</a></li>
-  <li><a href="../noticia.php?categoria=3">Quarentão</a></li>
-  <li><a href="../noticia.php?categoria=4">Cinquentão</a></li>
+    <li><?= Html::a('Livre Prata', ['site/noticias','categoria'=>1]); ?></li>
+    <li><?= Html::a('Livre Ouro', ['site/noticias','categoria'=>2]); ?></li>
+    <li><?= Html::a('Quarentão', ['site/noticias','categoria'=>3]); ?></li>
+    <li><?= Html::a('Cinquentão', ['site/noticias','categoria'=>4]); ?></li>
   </ul>
   </li>
   <li>
   <a data-toggle="collapse" href="#list-3"><i class="pull-right fa fa-angle-down"></i>Campeonato</a>
   <ul class="collapse" id="list-3">
-  <li><a href="ficha.pdf">Formulário</a></li>
-  <li><a href="futsal_2012.php">Futsal 2012</a></li>
-  <li><a href="futsal_2013.php">Futsal 2013</a></li>
-  <li><a href="futsal_2014.php">Futsal 2014</a></li>
-  <li><a href="futsal_2015.php">Futsal 2015</a></li>
-  <li><a href="society_2011.php">Society 2011</a></li>
-  <li><a href="society_2012.php">Society 2012</a></li>
-  <li><a href="society_2013.php">Society 2013</a></li>
-  <li><a href="society_2014.php">Society 2014</a></li>
-  <li><a href="society_2015.php">Society 2015</a></li>
+    <li><?= Html::a('Formulário',['site/ficha']); ?></li>
+    <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
+    <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
+    <li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
+    <li><?= Html::a('Futsal 2015',['site/futsal','ano'=>2015]); ?></li>
+    <li><?= Html::a('Society 2011',['site/society','ano'=>2011]); ?></li>
+    <li><?= Html::a('Society 2012',['site/society','ano'=>2012]); ?></li>
+    <li><?= Html::a('Society 2013',['site/society','ano'=>2013]); ?></li>
+    <li><?= Html::a('Society 2014',['site/society','ano'=>2014]); ?></li>
+    <li><?= Html::a('Society 2015',['site/society','ano'=>2015]); ?></li>
   </ul>
   </li>
   <li>
   <a data-toggle="collapse" href="#list-4"><i class="pull-right fa fa-angle-down"></i>Tabelas</a>
   <ul class="collapse" id="list-4">
-  <li><a href="tabela_geral_livre_rodada1.php">Livre-série Ouro</a></li>
-  <li><a href="tabela_geral_livre_rodada1p.php">Livre-série Prata</a></li>
-  <li><a href="tabela_geral_livre_rodada1q.php">Quarentão</a></li>
-  <li><a href="tabela_geral_livre_rodada1c.php">Cinquentão</a></li>
+    <li><?= Html::a('Livre Prata',['site/tabelageral','categoria'=>1]) ?></li>
+    <li><?= Html::a('Livre Ouro',['site/tabelageral','categoria'=>2]) ?></li>
+    <li><?= Html::a('Quarentão',['site/tabelageral','categoria'=>3]) ?></li>
+    <li><?= Html::a('Cinquentão',['site/tabelageral','categoria'=>4]) ?></li>>
   </ul>
   </li>
   <li>
   <a data-toggle="collapse" href="#list-5"><i class="pull-right fa fa-angle-down"></i>Disciplina</a>
   <ul class="collapse" id="list-5">
-  <li><a href="tabela_julgamento.php">Resultado Julgamento</a></li>
-  <li><a href="tabela_pendurados.php">Atleta Pendurado</a></li>
-  <li><a href="tabela_suspensos.php">Atleta Suspenso</a></li>
+    <li><?= Html::a('Resultado Julgamento',['site/disciplina','param'=>'julgamento']) ?></li>
+    <li><?= Html::a('Atleta Pendurado',['site/disciplina','param'=>'pendurados']) ?></li>
+    <li><?= Html::a('Atleta Suspenso',['site/disciplina','param'=>'suspensos']) ?></li>
   </ul>
   </li>
   <li>
   <a data-toggle="collapse" href="#list-6"><i class="pull-right fa fa-angle-down"></i>Scouts</a>
   <ul class="collapse" id="list-6">
-  <li><a href="classificacaoprincipal.php">Livre</a></li>
-  <li><a href="classificacaoquarentao.php">Quarentão</a></li>
-  <li><a href="classificacaocinquentao.php">Cinquentão</a></li>
+    <li><?= Html::a('Livre',['site/classificacao','param'=>'livre']) ?></li>
+    <li><?= Html::a('Quarentão',['site/classificacao','param'=>'quarentao']) ?></li>
+    <li><?= Html::a('Cinquentão',['site/classificacao','param'=>'cinquentao']) ?></li>
   </ul>
   </li>
   <li>
   <a data-toggle="collapse" href="#list-6"><i class="pull-right fa fa-angle-down"></i>Regulamento</a>
   <ul class="collapse" id="list-6">
-  <li><a href="RGC.pdf">RGC</a></li>
-  <li><a href="disputafutsal.pdf">Anexo-1 Futsal</a></li>
-  <li><a href="disputasociety2016.pdf">Anexo-2 Society</a></li>
-  <li><a href="cde.pdf">CDE</a></li>
-  <li><a href="tbgeral.pdf">Tabela Geral</a></li>
+    <li><?= Html::a('RGC',['site/pdf','param'=>'RGC']) ?></li>
+    <li><?= Html::a('Anexo-1 Futsal',['site/pdf','param'=>'ANEXO1']) ?></li>
+    <li><?= Html::a('Anexo-2 Society',['site/pdf','param'=>'ANEXO2']) ?></li>
+    <li><?= Html::a('CDE',['site/pdf','param'=>'CDE']) ?></li>
+    <li><?= Html::a('Tabela Geral',['site/tabelageral']) ?></li>
   </ul>
   </li>
-  <li><a href="contato.php">Contato</a><li>
+  <li><?= Html::a('Contato',['site/contact']) ?><li>
   </ul>
   </nav>
   <!-- Slide Menu -->

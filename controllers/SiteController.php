@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Noticias;
 
 class SiteController extends Controller
 {
@@ -61,8 +62,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-      $this->view->params['noticias'] = '';
-        return $this->render('index');
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      return $this->render('index', ['noticias'=>$noticias]);
     }
 
     /**

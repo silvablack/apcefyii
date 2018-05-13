@@ -63,6 +63,8 @@ a.newslink:hover{background:none !important;font-size:12px !important;display:bl
 a.newsimagelink{background:none !important;margin:0 !important;padding: 0 !important;display:block !important;margin:0 !important;}
 a.newsimagelink:hover{background:none !important;margin:0 !important;padding: 0 !important;display:block !important;margin:0 !important;}
 
+.news-slider.style-2{position: static !important;}
+
 /****** Theme Reset Style ******/
 body{ background: #fff; color: #363636; font-family: 'Open Sans', sans-serif; font-size: 14px;}
 h1,h2,h3,h4,h5,h6{ font-family: 'Montserrat', sans-serif; color: #0c0c0c; margin: 0 0 20px;}

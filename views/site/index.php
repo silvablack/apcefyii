@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-
+$this->params['noticias'] = $noticias;
 $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 ?>
 <!-- Match Detail -->
