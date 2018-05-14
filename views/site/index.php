@@ -70,7 +70,48 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                 <div class="table-responsive">
                   <table class="table text-center table-condensed" style="border-right:1px solid #CC0000;border-left:1px solid #CC0000;border-bottom:1px solid #CC0000;">
                       <tbody>
-                        <!-- CODIGO PROXIMAS PARTIDAS -->
+                        <?php
+                        if(count($lastgames)>0):
+                          foreach ($lastgames as $linha) :
+                            $id1 = $linha['id1'];
+                            $id2 = $linha['id2'];
+                            $equipe1 = $linha['equipe1'];
+                            $equipe2 = $linha['equipe2'];
+                            $placar1 = $linha['placar1'];
+                            $placar2 = $linha['placar2'];
+                            $data = $linha['data_jogo'];
+                            $dia = $linha['dia'];
+                            $hora = $linha['hora'];
+                            $hora1 = substr($hora, 0, 2);
+                            $hora2 = substr($hora, 2, 2);
+                            $categoria = $linha['categoria'];
+                            $datahora = strtotime($data);
+                            $dataformat = date("d/m/y",$datahora);
+
+                          ?>
+
+                        <tr>
+                            <td>
+                              <div class="logo-width-name"><img src="paginas/logo/<?php echo $id1 ?>.jpg" alt=""><p><?php echo $equipe1 ?> <?php echo $placar1 ?></p></div>
+                            </td>
+                            <td style=""><span>X</span></td>
+                            <td>
+                              <div class="logo-width-name"><img src="paginas/logo/<?php echo $id2 ?>.jpg" alt=""><p><?php echo $equipe2 ?> <?php echo $placar2 ?></p></div>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="font-size:10px;color:#CC0000;font-weight:bold;"><span><?php echo $dataformat." <br> ".$dia." - ".$hora1.":".$hora2." <br> ".$categoria ?></span></td>
+                        </tr>
+                        <?php
+                      endforeach;
+                        else:
+                           ?>
+                        <tr>
+                            <td>
+                              <p>Sem informações disponíveis no momento.</p>
+                            </td>
+                        </tr>
+                      <?php endif; ?>
                       </tbody>
                   </table>
                 </div>

@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Noticias;
+use app\models\Jogos;
 
 class SiteController extends Controller
 {
@@ -65,9 +66,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
       $lastnews = Noticias::find()->orderBy('data')->joinWith(['noticiasImgs'])->limit(10)->all();
-      //var_dump($lastnews[0]->noticiasImgs);
+      $lastgames = Jogos::find()->orderBy('data_jogo')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
 
-      return $this->render('index', ['noticias'=>$noticias, 'lastnews'=>$lastnews]);
+      return $this->render('index', ['noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);
     }
 
     /**
