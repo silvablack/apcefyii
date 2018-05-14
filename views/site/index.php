@@ -108,7 +108,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                            ?>
                         <tr>
                             <td>
-                              <p>Sem informações disponíveis no momento.</p>
+                              <p class="bg-info">Sem informações disponíveis no momento.</p>
                             </td>
                         </tr>
                       <?php endif; ?>
