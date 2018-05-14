@@ -55,6 +55,13 @@ $config = [
              '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
         ],
+        'formatter' => [
+            'dateFormat' => 'dd/MM/yyyy',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'BRA',
+            'locale'=>'pt-BR'
+       ],
 
     ],
     'params' => $params,
