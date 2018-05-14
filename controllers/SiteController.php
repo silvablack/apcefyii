@@ -64,7 +64,10 @@ class SiteController extends Controller
     {
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
-      return $this->render('index', ['noticias'=>$noticias]);
+      $lastnews = Noticias::find()->orderBy('data')->joinWith(['noticiasImgs'])->limit(10)->all();
+      //var_dump($lastnews[0]->noticiasImgs);
+
+      return $this->render('index', ['noticias'=>$noticias, 'lastnews'=>$lastnews]);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
-
+use yii\helpers\StringHelper;
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 $this->params['noticias'] = $noticias;
 $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
@@ -8,19 +9,55 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 <section class="theme-padding-bottom bg-fixed">
   <div class="container">
 
-    <div style="margin:10px;"></div>
-
     <!-- Match Detail Content -->
-    <div class="match-detail-content">
+    <div class="match-detail-content theme-padding-top">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 theme-padding-bottom">
           <div class="row">
             <!-- Latest News -->
             <div class="col-lg-8 col-xs-12">
               <div class="latest-news-holder">
                 <h3><span>últimas notícias</span></h3>
 
-                <!-- ULTIMAS NOTICIAS -->
+                <!-- latest-news Slider -->
+                <div class="row no-gutters white-bg">
+
+                  <!-- Slider -->
+                  <div class="col-sm-9">
+                    <ul id="latest-news-slider" class="latest-news-slider">
+                      <?php foreach($lastnews as $v): ?>
+                        <?php //var_dump($v->noticiasImgs); ?>
+                      <li>
+                        <?php foreach($v->noticiasImgs as $img): ?>
+                      <img class="img-responsive" style="max-width:615px;max-height:358px;height:358px;" src="/images/gallery/<?php echo $img->src; ?>" alt="">
+                      <?php break; endforeach; ?>
+                        <p><?= StringHelper::truncate($v->titulo,25) ?>: <?= strip_tags(StringHelper::truncate($v->noticia,120)) ?>
+                          <?= Html::a('Leia mais', ['site/noticia', 'id'=>$v->id]) ?></a></p>
+                      </li>
+                    <?php	endforeach; ?>
+                    </ul>
+                  </div>
+                  <!-- Slider -->
+
+                  <!-- Thumnail -->
+                  <div class="col-sm-3">
+                    <ul id="latest-news-thumb" class="latest-news-thumb">
+                      <?php foreach($lastnews as $v): ?>
+                      <li>
+                        <p><?= substr($v->noticia,0,40) ?></p>
+                        <span><?= $v->data ?></span>
+                      </li>
+                    <?php	endforeach; ?>
+                    </ul>
+                    <ul class="news-thumb-arrows">
+                      <li class="prev"><span class="fa fa-angle-up"></span></li>
+                      <li class="next"><span class="fa fa-angle-down"></span></li>
+                    </ul>
+                  </div>
+                  <!-- Thumnail -->
+
+                </div>
+                <!-- latest-news Slider -->
 
               </div>
             </div>
