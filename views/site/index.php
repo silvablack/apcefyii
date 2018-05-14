@@ -31,7 +31,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                         <?php foreach($v->noticiasImgs as $img): ?>
                       <img class="img-responsive" style="max-width:615px;max-height:358px;height:358px;" src="/images/gallery/<?php echo $img->src; ?>" alt="">
                       <?php break; endforeach; ?>
-                        <p><?= StringHelper::truncate($v->titulo,25) ?>: <?= strip_tags(StringHelper::truncate($v->noticia,120)) ?>
+                        <p><?= StringHelper::truncate($v->titulo,25) ?>: <?= StringHelper::truncate(strip_tags($v->noticia),120) ?>
                           <?= Html::a('Leia mais', ['site/noticia', 'id'=>$v->id]) ?></a></p>
                       </li>
                     <?php	endforeach; ?>
@@ -44,7 +44,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                     <ul id="latest-news-thumb" class="latest-news-thumb">
                       <?php foreach($lastnews as $v): ?>
                       <li>
-                        <p><?= substr($v->noticia,0,40) ?></p>
+                        <p><?= StringHelper::truncate(strip_tags($v->noticia),40) ?></p>
                         <span><?= $v->data ?></span>
                       </li>
                     <?php	endforeach; ?>
