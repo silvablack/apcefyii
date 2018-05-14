@@ -45,7 +45,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                       <?php foreach($lastnews as $v): ?>
                       <li>
                         <p><?= StringHelper::truncate(strip_tags($v->noticia),40) ?></p>
-                        <span><?= $v->data ?></span>
+                        <span><?= Yii::$app->formatter->asDate($v->data) ?></span>
                       </li>
                     <?php	endforeach; ?>
                     </ul>
