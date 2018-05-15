@@ -72,7 +72,7 @@ AppAsset::register($this);
 
   					<!-- Logo -->
   					<div class="logo">
-  						<a href="#"><img src="../images/logo-apcef.png" style="margin-left: 5px;margin-top:30px;" alt=""></a>
+  						<a href="#"><img src="<?= Yii::getAlias('@web') ?>/images/logo-apcef.png" style="margin-left: 5px;margin-top:30px;" alt=""></a>
   					</div>
   					<!-- Logo -->
 
