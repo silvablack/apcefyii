@@ -64,6 +64,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+      //MENU NOTICIAS LAYOUT
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
       $lastnews = Noticias::find()->orderBy('id DESC')->joinWith(['noticiasImgs'])->limit(10)->all();
@@ -78,6 +79,7 @@ class SiteController extends Controller
       $countQuery = clone $query;
       $pages = new Pagination(['totalCount'=>$countQuery->count()]);
       $model = $query->offset($pages->offset)->limit($pages->limit)->all();
+      //MENU NOTICIAS LAYOUT
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
 
@@ -94,6 +96,16 @@ class SiteController extends Controller
         'noticias'=>$noticias,
         'categoria'=>$translate_categoria[$categoria]
       ]);
+    }
+
+    public function actionNoticia($id){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+
+      $model = Noticias::find()->where(['noticias.id'=>$id])->joinWith(['noticiasImgs'])->one();
+      return $this->render('noticia',['model'=>$model, 'noticias'=>$noticias]);
     }
 
     /**

@@ -28,7 +28,9 @@ class AppAsset extends AssetBundle
         'css/font-awesome.min.css',
         'css/style.css',
         'css/color.css',
-        'css/responsive.css'
+        'css/responsive.css',
+        "css/slick.css",
+        "css/slick-theme.css",
     ];
     public $js = [
       'js/vendor/modernizr.js',
@@ -49,10 +51,11 @@ class AppAsset extends AssetBundle
       'js/appear.js',
       'js/prettyPhoto.js',
       'js/wow-min.js',
-      'js/main.js'
+      'js/main.js',
+      'js/slick.min.js',
     ];
     public $depends = [
-        //'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];
 }
