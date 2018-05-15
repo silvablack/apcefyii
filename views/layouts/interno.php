@@ -188,6 +188,11 @@ AppAsset::register($this);
   	</header>
   	<!-- Header -->
 
+    <!-- Page Heading banner -->
+    <div class="overlay-dark theme-padding parallax-window" data-appear-top-offset="600" data-parallax="scroll" data-image-src="images/futebol-image1.jpg">
+    </div>
+    <!-- Page Heading banner -->
+
   	<!-- Main Content -->
   	<main class="main-content">
   					<?php echo $content; ?>
