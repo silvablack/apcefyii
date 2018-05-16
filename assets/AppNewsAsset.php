@@ -15,7 +15,7 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class AppNewsAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
@@ -29,6 +29,8 @@ class AppAsset extends AssetBundle
         'css/style.css',
         'css/color.css',
         'css/responsive.css',
+        "css/slick.css",
+        "css/slick-theme.css",
     ];
     public $js = [
       'js/vendor/modernizr.js',
@@ -50,9 +52,10 @@ class AppAsset extends AssetBundle
       'js/prettyPhoto.js',
       'js/wow-min.js',
       'js/main.js',
+      'js/slick.min.js',
     ];
     public $depends = [
-        //'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];
 }

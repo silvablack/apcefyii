@@ -1,13 +1,19 @@
 <?php
 use yii\helpers\StringHelper;
 use yii\helpers\Html;
+use app\assets\AppNewsAsset;
+AppNewsAsset::register($this);
 /* @var $this yii\web\View */
 $this->params['noticias'] = $noticias;
 $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 
-$this->registerCss('.slick-prev::before, .slick-next::before{
-  color: black !important;
-}');
+
+
+$this->registerCss('
+  .slick-prev::before, .slick-next::before{
+    color: black !important;
+  }
+');
 
 $this->registerJs("
   $('.single-item').removeClass('hidden');
@@ -19,6 +25,7 @@ $this->registerJs("
     dots: true
   });
 ", yii\web\View::POS_LOAD, 'slickconf');
+
 
 ?>
 
@@ -46,7 +53,7 @@ $this->registerJs("
                   <?php
                   foreach($model->noticiasImgs as $img):
                   ?>
-                  <div class="col-lg-12" style="height:400px;" data-src="<?= Yii::getAlias('@web') ?>/images/gallery/<?= $img->src; ?>">
+                  <div class="col-lg-12 col-md-12" style="height:400px;" data-src="<?= Yii::getAlias('@web') ?>/images/gallery/<?= $img->src; ?>">
                     <img style="width:100%;height:100%;" src="<?= Yii::getAlias('@web') ?>/images/gallery/<?= $img->src; ?>" />
                   </div>
                 <?php endforeach ?>
