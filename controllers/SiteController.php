@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Noticias;
 use app\models\Jogos;
+use app\models\Jogadores;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -106,6 +107,20 @@ class SiteController extends Controller
 
       $model = Noticias::find()->where(['noticias.id'=>$id])->joinWith(['noticiasImgs'])->one();
       return $this->render('noticia',['model'=>$model, 'noticias'=>$noticias]);
+    }
+
+    public function actionAtestado($param){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      $model = new Jogadores;
+      if($param == 'PEN'){
+        $model = Jogadores::find()->where(['lower(at)'=>strtolower('AT')])->orderBy('nome_jogador')->all();
+      }else{
+        $model = Jogadores::find()->where(['lower(at)'=>strtolower('OK')])->orderBy('nome_jogador')->all();
+      }
+      return $this->render('atestado',['noticias'=>$noticias, 'type'=>$param, 'model'=>$model]);
     }
 
     /**
