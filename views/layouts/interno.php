@@ -130,7 +130,7 @@ AppAsset::register($this);
   						<li>
   								<a href="#">Campeonato</a>
   								<ul>
-                    <li><?= Html::a('Formulário',['site/ficha']); ?></li>
+                    <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha']); ?></li>
   									<li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
   									<li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
   									<li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
@@ -169,10 +169,10 @@ AppAsset::register($this);
   						</li>
   						<li><a href="#">Regulamento</a>
   							<ul>
-                  <li><?= Html::a('RGC',['site/pdf','param'=>'RGC']) ?></li>
-  								<li><?= Html::a('Anexo-1 Futsal',['site/pdf','param'=>'ANEXO1']) ?></li>
-  								<li><?= Html::a('Anexo-2 Society',['site/pdf','param'=>'ANEXO2']) ?></li>
-  								<li><?= Html::a('CDE',['site/pdf','param'=>'CDE']) ?></li>
+                  <li><?= Html::a('RGC',['site/pdf','file'=>'RGC']) ?></li>
+  								<li><?= Html::a('Anexo-1 Futsal',['site/pdf','file'=>'ANEXO1']) ?></li>
+  								<li><?= Html::a('Anexo-2 Society',['site/pdf','file'=>'ANEXO2']) ?></li>
+  								<li><?= Html::a('CDE',['site/pdf','file'=>'CDE']) ?></li>
   								<li><?= Html::a('Tabela Geral',['site/tabelageral']) ?></li>
   							</ul>
   						</li>
@@ -247,7 +247,7 @@ AppAsset::register($this);
   <ul class="footer-links">
     <li><?= Html::a('Home', ['site/index']); ?></li>
     <li><?= Html::a('Contato',['site/contact']) ?></li>
-    <li><?= Html::a('Formulário',['site/ficha']); ?></li>
+    <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha']); ?></li>
       <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
       <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
       <li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
@@ -260,10 +260,10 @@ AppAsset::register($this);
       <li><?= Html::a('Resultado Julgamento',['site/disciplina','param'=>'julgamento']) ?></li>
       <li><?= Html::a('Atleta Pendurado',['site/disciplina','param'=>'pendurados']) ?></li>
       <li><?= Html::a('Atleta Suspenso',['site/disciplina','param'=>'suspensos']) ?></li>
-      <li><?= Html::a('RGC',['site/pdf','param'=>'RGC']) ?></li>
-    <li><?= Html::a('Anexo-1 Futsal',['site/pdf','param'=>'ANEXO1']) ?></li>
-    <li><?= Html::a('Anexo-2 Society',['site/pdf','param'=>'ANEXO2']) ?></li>
-    <li><?= Html::a('CDE',['site/pdf','param'=>'CDE']) ?></li>
+      <li><?= Html::a('RGC',['site/pdf','file'=>'RGC']) ?></li>
+    <li><?= Html::a('Anexo-1 Futsal',['site/pdf','file'=>'ANEXO1']) ?></li>
+    <li><?= Html::a('Anexo-2 Society',['site/pdf','file'=>'ANEXO2']) ?></li>
+    <li><?= Html::a('CDE',['site/pdf','file'=>'CDE']) ?></li>
     <li><?= Html::a('Tabela Geral',['site/tabelageral']) ?></li>
   </ul>
   </div>
@@ -334,7 +334,7 @@ AppAsset::register($this);
   <li>
   <a data-toggle="collapse" href="#list-3"><i class="pull-right fa fa-angle-down"></i>Campeonato</a>
   <ul class="collapse" id="list-3">
-    <li><?= Html::a('Formulário',['site/ficha']); ?></li>
+    <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha']); ?></li>
     <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
     <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
     <li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
@@ -374,10 +374,10 @@ AppAsset::register($this);
   <li>
   <a data-toggle="collapse" href="#list-6"><i class="pull-right fa fa-angle-down"></i>Regulamento</a>
   <ul class="collapse" id="list-6">
-    <li><?= Html::a('RGC',['site/pdf','param'=>'RGC']) ?></li>
-    <li><?= Html::a('Anexo-1 Futsal',['site/pdf','param'=>'ANEXO1']) ?></li>
-    <li><?= Html::a('Anexo-2 Society',['site/pdf','param'=>'ANEXO2']) ?></li>
-    <li><?= Html::a('CDE',['site/pdf','param'=>'CDE']) ?></li>
+    <li><?= Html::a('RGC',['site/pdf','file'=>'RGC']) ?></li>
+    <li><?= Html::a('Anexo-1 Futsal',['site/pdf','file'=>'ANEXO1']) ?></li>
+    <li><?= Html::a('Anexo-2 Society',['site/pdf','file'=>'ANEXO2']) ?></li>
+    <li><?= Html::a('CDE',['site/pdf','file'=>'CDE']) ?></li>
     <li><?= Html::a('Tabela Geral',['site/tabelageral']) ?></li>
   </ul>
   </li>
