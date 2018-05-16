@@ -123,6 +123,12 @@ class SiteController extends Controller
       return $this->render('atestado',['noticias'=>$noticias, 'type'=>$param, 'model'=>$model]);
     }
 
+    public function actionPdf($file){
+      $path = Yii::getAlias('@app');
+      $completePath = $path.'/web/pdf/'.$file.'.pdf';
+      return Yii::$app->response->sendFile($completePath, $file, ['inline'=>true]);
+    }
+
     /**
      * Displays interno.
      *
