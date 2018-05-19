@@ -82,8 +82,6 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                             $data = $linha['data_jogo'];
                             $dia = $linha['dia'];
                             $hora = $linha['hora'];
-                            $hora1 = substr($hora, 0, 2);
-                            $hora2 = substr($hora, 2, 2);
                             $categoria = $linha['categoria'];
                             $datahora = strtotime($data);
                             $dataformat = date("d/m/y",$datahora);
@@ -100,7 +98,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                             </td>
                         </tr>
                         <tr>
-                          <td colspan="3" style="font-size:10px;color:#CC0000;font-weight:bold;"><span><?php echo $dataformat." <br> ".$dia." - ".$hora1.":".$hora2." <br> ".$categoria ?></span></td>
+                          <td colspan="3" style="font-size:10px;color:#CC0000;font-weight:bold;"><span><?php echo $dataformat." <br> ".$dia." - ".$hora." <br> ".$categoria ?></span></td>
                         </tr>
                         <?php
                       endforeach;
