@@ -146,11 +146,9 @@ AppAsset::register($this);
   									<li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
   									<li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
   									<li><?= Html::a('Futsal 2015',['site/futsal','ano'=>2015]); ?></li>
-  									<li><?= Html::a('Society 2011',['site/society','ano'=>2011]); ?></li>
   									<li><?= Html::a('Society 2012',['site/society','ano'=>2012]); ?></li>
   									<li><?= Html::a('Society 2013',['site/society','ano'=>2013]); ?></li>
   									<li><?= Html::a('Society 2014',['site/society','ano'=>2014]); ?></li>
-  									<li><?= Html::a('Society 2015',['site/society','ano'=>2015]); ?></li>
   								</ul>
   						</li>
   						<li>
@@ -309,11 +307,9 @@ AppAsset::register($this);
   									<li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
   									<li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
   									<li><?= Html::a('Futsal 2015',['site/futsal','ano'=>2015]); ?></li>
-  									<li><?= Html::a('Society 2011',['site/society','ano'=>2011]); ?></li>
   									<li><?= Html::a('Society 2012',['site/society','ano'=>2012]); ?></li>
   									<li><?= Html::a('Society 2013',['site/society','ano'=>2013]); ?></li>
   									<li><?= Html::a('Society 2014',['site/society','ano'=>2014]); ?></li>
-  									<li><?= Html::a('Society 2015',['site/society','ano'=>2015]); ?></li>
                     <li><?= Html::a('Resultado Julgamento',['site/disciplina','param'=>'julgamento']) ?></li>
   									<li><?= Html::a('Atleta Pendurado',['site/disciplina','param'=>'pendurados']) ?></li>
   									<li><?= Html::a('Atleta Suspenso',['site/disciplina','param'=>'suspensos']) ?></li>
