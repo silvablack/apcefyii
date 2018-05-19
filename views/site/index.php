@@ -90,11 +90,11 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 
                         <tr>
                             <td>
-                              <div class="logo-width-name"><img src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $id1 ?>.jpg" alt=""><p><?php echo $equipe1 ?> <?php echo $placar1 ?></p></div>
+                              <div class="logo-width-name"><img src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe1 ?>.bmp" alt=""><p><?php echo $equipe1 ?> <?php echo $placar1 ?></p></div>
                             </td>
                             <td style=""><span>X</span></td>
                             <td>
-                              <div class="logo-width-name"><img src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $id2 ?>.jpg" alt=""><p><?php echo $equipe2 ?> <?php echo $placar2 ?></p></div>
+                              <div class="logo-width-name"><img src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe2 ?>.bmp" alt=""><p><?php echo $equipe2 ?> <?php echo $placar2 ?></p></div>
                             </td>
                         </tr>
                         <tr>
