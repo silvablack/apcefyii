@@ -129,6 +129,14 @@ class SiteController extends Controller
       return Yii::$app->response->sendFile($completePath, $file, ['inline'=>true]);
     }
 
+    public function actionFutsal($ano){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      return $this->render('futsal',['noticias'=>$noticias, 'ano'=>$ano]);
+    }
+
     /**
      * Displays interno.
      *
