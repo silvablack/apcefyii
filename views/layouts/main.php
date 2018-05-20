@@ -82,8 +82,8 @@ AppAsset::register($this);
   					<!-- Responsive Button -->
 
   					<!-- Logo -->
-  					<div class="logo">
-  						<a href="#"><img src="<?= Yii::getAlias('@web') ?>/images/logo-apcef.png" style="margin-left: 5px;" alt=""></a>
+            <div class="logo">
+              <?= Html::a('<img src="'.Yii::getAlias("@web").'/images/logo-apcef.png" style="margin-left: 5px;" alt="">', ['site/index']) ?>
   					</div>
   					<!-- Logo -->
 
