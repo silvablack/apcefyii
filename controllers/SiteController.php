@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\Noticias;
 use app\models\Jogos;
 use app\models\Jogadores;
+use app\models\Categoria;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -143,6 +144,27 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
       return $this->render('society',['noticias'=>$noticias, 'ano'=>$ano]);
+    }
+
+    public function actionTabelageral($categoria, $rodada = NULL){
+      $categoria = Categoria::findOne($categoria);
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')->queryAll();
+      $jogos = [];
+      if($rodada == NULL){
+        $jogos = Jogos::find()->orderBy('data_jogo, hora')->where(['categoria'=>$categoria->categoria, 'confirmacao_rodada'=>'SIM'])->all();
+        $rodada = 'CONFIRMACAO RODADA';
+      }elseif($rodada == 'all'){
+        $jogos = Jogos::find()->orderBy('data_jogo, hora')->where(['categoria'=>$categoria->categoria])->all();
+        $rodada = 'TODAS';
+      }else{
+        $jogos = Jogos::find()->orderBy('data_jogo, hora')->where(['categoria'=>$categoria->categoria, 'rodada'=>$rodada])->all();
+        $rodada = $rodada.'ª RODADA';
+      }
+      $rodadas = Jogos::find()->select('rodada')->where(['categoria'=>$categoria->categoria])->groupBy('rodada')->orderBy('rodada')->all();
+
+      return $this->render('tabelageral',['categoria'=>$categoria,'noticias'=>$noticias, 'rodadas'=>$rodadas, 'jogos'=>$jogos, 'rodada'=>$rodada]);
     }
 
     /**
