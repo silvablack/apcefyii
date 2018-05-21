@@ -192,6 +192,22 @@ class SiteController extends Controller
 
     }
 
+    public function actionTabelagol($id){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      return $this->render('embreve', ['noticias'=>$noticias]);
+    }
+
+    public function actionSumula($jogo){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      return $this->render('embreve', ['noticias'=>$noticias]);
+    }
+
     /**
      * Login action.
      *
