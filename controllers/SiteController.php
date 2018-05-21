@@ -13,6 +13,7 @@ use app\models\Noticias;
 use app\models\Jogos;
 use app\models\Jogadores;
 use app\models\Categoria;
+use app\models\Julgamento;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -172,11 +173,23 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex2()
+    public function actionDisciplina($param)
     {
       $this->layout = 'interno';
-      $this->view->params['noticias'] = '';
-        return $this->render('index');
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      if($param == 'julgamento'){
+        $julgamento = Julgamento::find()->where(['convocado'=>'SIM'])->orderBy('nome_jogador')->all();
+        return $this->render('julgamento', ['noticias'=>$noticias, 'julgamento'=>$julgamento, 'param'=>$param]);
+      }elseif($param == 'suspensos'){
+        $suspensos = Jogadores::find()->where(['LOWER(cartao)'=>'suspenso'])->orderBy('nome_jogador')->all();
+        return $this->render('suspensos', ['noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);
+      }elseif($param == 'pendurados'){
+        $pendurados = Jogadores::find()->where(['LOWER(cartao)'=>'pendurado'])->orderBy('nome_jogador')->all();
+        return $this->render('pendurados', ['noticias'=>$noticias, 'pendurados'=>$pendurados, 'param'=>$param]);
+      }
+
     }
 
     /**
