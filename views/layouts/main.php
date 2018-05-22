@@ -171,7 +171,8 @@ AppAsset::register($this);
   						<li>
   								<a href="#">Scouts</a>
   								<ul>
-  									<li><?= Html::a('Livre',['site/classificacao','param'=>'livre']) ?></li>
+                    <li><?= Html::a('Livre Prata',['site/classificacao','param'=>'livre-prata']) ?></li>
+                    <li><?= Html::a('Livre Ouro',['site/classificacao','param'=>'livre-ouro']) ?></li>
   									<li><?= Html::a('Quarentão',['site/classificacao','param'=>'quarentao']) ?></li>
   									<li><?= Html::a('Cinquentão',['site/classificacao','param'=>'cinquentao']) ?></li>
   								</ul>
@@ -419,7 +420,8 @@ AppAsset::register($this);
   		<li>
   			<a data-toggle="collapse" href="#list-6"><i class="pull-right fa fa-angle-down"></i>Scouts</a>
   			<ul class="collapse" id="list-6">
-          <li><?= Html::a('Livre',['site/classificacao','param'=>'livre']) ?></li>
+          <li><?= Html::a('Livre Prata',['site/classificacao','param'=>'livre-prata']) ?></li>
+          <li><?= Html::a('Livre Ouro',['site/classificacao','param'=>'livre-ouro']) ?></li>
   				<li><?= Html::a('Quarentão',['site/classificacao','param'=>'quarentao']) ?></li>
   				<li><?= Html::a('Cinquentão',['site/classificacao','param'=>'cinquentao']) ?></li>
   			</ul>

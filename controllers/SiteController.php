@@ -14,6 +14,7 @@ use app\models\Jogos;
 use app\models\Jogadores;
 use app\models\Categoria;
 use app\models\Julgamento;
+use app\models\Equipes;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -190,6 +191,40 @@ class SiteController extends Controller
         return $this->render('pendurados', ['noticias'=>$noticias, 'pendurados'=>$pendurados, 'param'=>$param]);
       }
 
+    }
+
+    public function actionClassificacao($param){
+      $categoria = [
+        'cinquentao'=>'CINQUENTÃO',
+        'quarentao'=>'QUARENTÃO',
+        'livre-ouro'=>'LIVRE-OURO',
+        'livre-prata'=>'LIVRE-PRATA'
+      ];
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+
+      $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('class')->where(['>', 'class', 0])->all();
+      $atakMaisPositivo = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GP DESC')->all();
+      $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GC')->where(['>', 'GC', 0])->all();
+      $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('classificacao_disciplinar')->where(['>', 'classificacao_disciplinar', 0])->all();
+      $artilheiros = Jogadores::find()->where(['categoria'=>$categoria[$param]])->orderBy('gols DESC, nome_jogador ASC')->limit(10)->all();
+      $golsContra = Jogadores::find()->where(['categoria'=>$categoria[$param]])->orderBy('gol_contra DESC, nome_jogador')->limit(10)->all();
+
+      $goleirosArtilheiros = Jogadores::find()->where(['categoria'=>$categoria[$param], 'jgd'=>'Gol'])->orderBy('gols DESC, nome_jogador ASC')->limit(10)->all();
+
+      return $this->render('classificacao', [
+        'noticias'=>$noticias,
+        'categoria'=>$categoria[$param],
+        'classificacao'=>$classificacao,
+        'atakMaisPositivo'=>$atakMaisPositivo,
+        'melhorDefesa'=>$melhorDefesa,
+        'classDisciplinar'=>$classDisciplinar,
+        'artilheiros'=>$artilheiros,
+        'golsContra'=>$golsContra,
+        'goleirosArtilheiros'=>$goleirosArtilheiros
+      ]);
     }
 
     public function actionTabelagol($id){
