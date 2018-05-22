@@ -227,6 +227,18 @@ class SiteController extends Controller
       ]);
     }
 
+    public function actionEquipe($id){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      $equipe = Equipes::findOne($id);
+      $sql = 'SELECT * FROM jogos WHERE categoria = :categoria AND (equipe1 = :eq OR equipe2 = :eq) ORDER BY data_jogo, hora';
+      $jogos = Jogos::findBySql($sql,[':categoria'=>$equipe->categoria, ':eq'=>$equipe->equipe])->all();
+      $jogadores = Jogadores::find()->where(['time'=>$equipe->equipe, 'categoria'=>$equipe->categoria])->all();
+      return $this->render('equipe', ['noticias'=>$noticias,'jogadores'=>$jogadores, 'jogos'=>$jogos, 'equipe'=>$equipe]);
+    }
+
     public function actionTabelagol($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
