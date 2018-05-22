@@ -18,10 +18,11 @@ $this->title = $categoria.' - APCEF';
           <div class="row">
             <div class="col-lg-6 table-responsive">
               <h4><?= $categoria ?> <small>Clique sobre a equipe para mais detalhes</small></h4>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th>Esc.</th>
                   <th>Equipe</th>
+                  <th>C</th>
                   <th>PT</th>
                   <th>V</th>
                   <th>E</th>
@@ -37,7 +38,8 @@ $this->title = $categoria.' - APCEF';
                 ?>
                 <tr>
                   <td><?= Html::a(Html::img('@web/media-files/logo/'.$c->equipe.'.bmp'), ['site/equipe','id'=>$c->id]) ?></td>
-                  <td><?= Html::a($c->class.'ª '.$c->equipe, ['site/equipe','id'=>$c->id]) ?></td>
+                  <td><?= Html::a($c->equipe, ['site/equipe','id'=>$c->id]) ?></td>
+                  <td><?= $c->class ?></td>
                   <td><?= $c->PTS ?></td>
                   <td><?= $c->V ?></td>
                   <td><?= $c->E ?></td>
@@ -56,7 +58,7 @@ $this->title = $categoria.' - APCEF';
             </div>
             <div class="col-lg-6 table-responsive">
               <h4>Disciplina <small>A equipe que sofrer wxo estará eliminada do troféu disciplina!</small></h4>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th></th>
                   <th>Equipe</th>
@@ -84,7 +86,7 @@ $this->title = $categoria.' - APCEF';
           <div class="row">
             <div class="col-lg-6 table-responsive">
               <h4>Artilheiros série ouro <small>Clique sobre o atleta</small></h4>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th></th>
                   <th>Atleta</th>
@@ -107,7 +109,7 @@ $this->title = $categoria.' - APCEF';
             </div>
             <div class="col-lg-6 table-responsive">
               <h4>Atletas que marcaram gol contra</h4>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th></th>
                   <th>Atleta</th>
@@ -131,7 +133,7 @@ $this->title = $categoria.' - APCEF';
           <div class="row">
             <div class="col-lg-6 table-responsive">
               <h4>Melhores ataque</h4>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th></th>
                   <th>Equipe</th>
@@ -152,7 +154,7 @@ $this->title = $categoria.' - APCEF';
             </div>
             <div class="col-lg-6 table-responsive">
               <h4>Melhores defesa</h4>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th></th>
                   <th>Equipe</th>
