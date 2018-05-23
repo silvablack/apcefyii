@@ -175,7 +175,7 @@ AppAsset::register($this);
   								<li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   							</ul>
   						</li>
-  						<li><?= Html::a('Contato',['site/contact']) ?><li>
+  						<li><?= Html::a('Contato',['site/contato']) ?><li>
   					</ul>
   					<!-- Nav List -->
 
@@ -245,7 +245,7 @@ AppAsset::register($this);
   <h5>INFORMAÇÃO</h5>
   <ul class="footer-links">
     <li><?= Html::a('Home', ['site/index']); ?></li>
-    <li><?= Html::a('Contato',['site/contact']) ?></li>
+    <li><?= Html::a('Contato',['site/contato']) ?></li>
     <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha'], ['target'=>'_blank']); ?></li>
       <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
       <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
@@ -377,7 +377,7 @@ AppAsset::register($this);
     <li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   </ul>
   </li>
-  <li><?= Html::a('Contato',['site/contact']) ?><li>
+  <li><?= Html::a('Contato',['site/contato']) ?><li>
   </ul>
   </nav>
   <!-- Slide Menu -->
