@@ -7,10 +7,15 @@ use Yii;
 /**
  * This is the model class for table "users".
  *
- * @property int $user_id auto incrementing user_id of each user, unique index
- * @property string $user_name user's name, unique
- * @property string $user_password_hash user's password in salted and hashed format
- * @property string $user_email user's email, unique
+ * @property int $id
+ * @property string $name
+ * @property string $username
+ * @property string $email
+ * @property string $password
+ * @property int $activate 0 = false, 1 = true
+ * @property string $authKey
+ * @property string $accessToken
+ * @property string $created_by
  */
 class Users extends \yii\db\ActiveRecord
 {
@@ -28,11 +33,11 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_name', 'user_password_hash', 'user_email'], 'required'],
-            [['user_name', 'user_email'], 'string', 'max' => 64],
-            [['user_password_hash'], 'string', 'max' => 255],
-            [['user_name'], 'unique'],
-            [['user_email'], 'unique'],
+            [['name', 'username', 'email', 'password'], 'required'],
+            [['created_by'], 'safe'],
+            [['name', 'username', 'email', 'password'], 'string', 'max' => 100],
+            [['activate'], 'string', 'max' => 4],
+            [['authKey', 'accessToken'], 'string', 'max' => 200],
         ];
     }
 
@@ -42,10 +47,15 @@ class Users extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => Yii::t('app', 'ID'),
-            'user_name' => Yii::t('app', 'Usuário'),
-            'user_password_hash' => Yii::t('app', 'Senha'),
-            'user_email' => Yii::t('app', 'Email'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'username' => Yii::t('app', 'Username'),
+            'email' => Yii::t('app', 'Email'),
+            'password' => Yii::t('app', 'Password'),
+            'activate' => Yii::t('app', 'Activate'),
+            'authKey' => Yii::t('app', 'Auth Key'),
+            'accessToken' => Yii::t('app', 'Access Token'),
+            'created_by' => Yii::t('app', 'Created By'),
         ];
     }
 

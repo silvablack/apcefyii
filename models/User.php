@@ -5,49 +5,44 @@ namespace app\models;
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
+    public $name;
     public $username;
+    public $email;
     public $password;
     public $authKey;
     public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
+    public $activate;
+    public $created_by;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+      $user = Users::find()
+              ->where("activate=:activate", [":activate" => 1])
+              ->andWhere("id=:id", ["id" => $id])
+              ->one();
+
+      return isset($user) ? new static($user) : null;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
+      $users = Users::find()
+              ->where("activate=:activate", [":activate" => 1])
+              ->andWhere("accessToken=:accessToken", [":accessToken" => $token])
+              ->all();
 
-        return null;
+      foreach ($users as $user) {
+          if ($user->accessToken === $token) {
+              return new static($user);
+          }
+      }
+      return null;
     }
 
     /**
@@ -58,17 +53,21 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
+      $users = Users::find()
+              ->where("activate=:activate", [":activate" => 1])
+              ->andWhere("username=:username", [":username" => $username])
+              ->all();
 
-        return null;
+      foreach ($users as $user) {
+          if (strcasecmp($user->username, $username) === 0) {
+              return new static($user);
+          }
+      }
+      return null;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getId()
     {
@@ -76,7 +75,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAuthKey()
     {
@@ -84,7 +83,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function validateAuthKey($authKey)
     {
@@ -99,6 +98,9 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+      if (crypt($password, $this->password) == $this->password)
+        {
+        return $password === $password;
+        }
     }
 }
