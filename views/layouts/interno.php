@@ -79,11 +79,12 @@ AppAsset::register($this);
   					<!-- Nav List -->
   					<ul class="nav-list pull-right">
   						<li>
-                <?= Html::a('Home', ['site/index']); ?>
+                <?= Html::a('Campeonato', ['site/index']); ?>
                 <ul>
                   <li><?= Html::a('Atestado Pendentes', ['site/atestado', 'param'=>'PEN']); ?></li>
                   <li><?= Html::a('Atestado OK', ['site/atestado', 'param'=>'OK']); ?></li>
                   <li><?= Html::a('Representantes', ['site/representantes']); ?></li>
+                  <li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
                 </ul>
   						</li>
   						<li class="mega-dropdown">
@@ -128,9 +129,8 @@ AppAsset::register($this);
   								</ul>
   						</li>
   						<li>
-  								<a href="#">Campeonato</a>
+  								<a href="#">Histórico</a>
   								<ul>
-                    <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha'], ['target'=>'_blank']); ?></li>
   									<li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
   									<li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
   									<li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
@@ -172,7 +172,6 @@ AppAsset::register($this);
   								<li><?= Html::a('Anexo-1 Futsal',['site/pdf','file'=>'ANEXO1'], ['target'=>'_blank']) ?></li>
   								<li><?= Html::a('Anexo-2 Society',['site/pdf','file'=>'ANEXO2'], ['target'=>'_blank']) ?></li>
   								<li><?= Html::a('CDE',['site/pdf','file'=>'CDE'], ['target'=>'_blank']) ?></li>
-  								<li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   							</ul>
   						</li>
   						<li><?= Html::a('Contato',['site/contato']) ?><li>
@@ -246,7 +245,6 @@ AppAsset::register($this);
   <ul class="footer-links">
     <li><?= Html::a('Home', ['site/index']); ?></li>
     <li><?= Html::a('Contato',['site/contato']) ?></li>
-    <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha'], ['target'=>'_blank']); ?></li>
       <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
       <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
       <li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
@@ -312,11 +310,12 @@ AppAsset::register($this);
   <a class="r-nav-logo" href="<?= Yii::getAlias('@web') ?>/site/index"><img src="<?= Yii::getAlias('@web') ?>/images/logo-apcef.png" style="margin-left: 5px;" alt=""></a>
   <ul class="respoinve-nav-list">
   <li>
-  <a data-toggle="collapse" href="#list-1"><i class="pull-right fa fa-angle-down"></i>Home</a>
+  <a data-toggle="collapse" href="#list-1"><i class="pull-right fa fa-angle-down"></i>Campeonato</a>
   <ul class="collapse" id="list-1">
     <li><?= Html::a('Atestado Pendentes', ['site/atestado', 'param'=>'PEN']); ?></li>
     <li><?= Html::a('Atestado OK', ['site/atestado', 'param'=>'OK']); ?></li>
     <li><?= Html::a('Representantes', ['site/representantes']); ?></li>
+    <li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   </ul>
   </li>
   <li>
@@ -329,9 +328,8 @@ AppAsset::register($this);
   </ul>
   </li>
   <li>
-  <a data-toggle="collapse" href="#list-3"><i class="pull-right fa fa-angle-down"></i>Campeonato</a>
+  <a data-toggle="collapse" href="#list-3"><i class="pull-right fa fa-angle-down"></i>Histórico</a>
   <ul class="collapse" id="list-3">
-    <li><?= Html::a('Formulário',['site/pdf', 'file'=>'ficha'], ['target'=>'_blank']); ?></li>
     <li><?= Html::a('Futsal 2012',['site/futsal','ano'=>2012]); ?></li>
     <li><?= Html::a('Futsal 2013',['site/futsal','ano'=>2013]); ?></li>
     <li><?= Html::a('Futsal 2014',['site/futsal','ano'=>2014]); ?></li>
@@ -374,7 +372,6 @@ AppAsset::register($this);
     <li><?= Html::a('Anexo-1 Futsal',['site/pdf','file'=>'ANEXO1'], ['target'=>'_blank']) ?></li>
     <li><?= Html::a('Anexo-2 Society',['site/pdf','file'=>'ANEXO2'], ['target'=>'_blank']) ?></li>
     <li><?= Html::a('CDE',['site/pdf','file'=>'CDE'], ['target'=>'_blank']) ?></li>
-    <li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   </ul>
   </li>
   <li><?= Html::a('Contato',['site/contato']) ?><li>
