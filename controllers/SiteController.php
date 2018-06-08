@@ -235,7 +235,7 @@ class SiteController extends Controller
       $equipe = Equipes::findOne($id);
       $sql = 'SELECT * FROM jogos WHERE categoria = :categoria AND (equipe1 = :eq OR equipe2 = :eq) ORDER BY data_jogo, hora';
       $jogos = Jogos::findBySql($sql,[':categoria'=>$equipe->categoria, ':eq'=>$equipe->equipe])->all();
-      $jogadores = Jogadores::find()->where(['time'=>$equipe->equipe, 'categoria'=>$equipe->categoria])->all();
+      $jogadores = Jogadores::find()->where(['time'=>$equipe->equipe, 'categoria'=>$equipe->categoria])->orderBy('nome_jogador')->all();
       return $this->render('equipe', ['noticias'=>$noticias,'jogadores'=>$jogadores, 'jogos'=>$jogos, 'equipe'=>$equipe]);
     }
 
