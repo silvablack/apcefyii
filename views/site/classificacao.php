@@ -16,7 +16,7 @@ $this->title = $categoria.' - APCEF';
         <!-- Piont Table -->
         <div class="macth-fixture">
           <div class="row">
-            <div class="col-lg-6 table-responsive">
+            <div class="col-lg-12 table-responsive">
               <h4><?= $categoria ?> <small>Clique sobre a equipe para mais detalhes</small></h4>
               <table class="table table-striped table-hover table-condensed">
                 <tr>
@@ -32,12 +32,13 @@ $this->title = $categoria.' - APCEF';
                   <th>SG</th>
                   <th>JG</th>
                   <th>%</th>
+                  <th>Obs</th>
                 </tr>
                 <?php
                 foreach ($classificacao as $c) :
                 ?>
                 <tr>
-                  <td><?= Html::a(Html::img('@web/media-files/logo/'.$c->equipe.'.bmp'), ['site/equipe','id'=>$c->id]) ?></td>
+                  <td style="text-align:center"><?= Html::a(Html::img('@web/media-files/logo/'.$c->equipe.'.bmp'), ['site/equipe','id'=>$c->id]) ?></td>
                   <td><?= Html::a($c->equipe, ['site/equipe','id'=>$c->id]) ?></td>
                   <td><?= $c->class ?></td>
                   <td><?= $c->PTS ?></td>
@@ -49,6 +50,7 @@ $this->title = $categoria.' - APCEF';
                   <td><?= $c->SG ?></td>
                   <td><?= $c->part ?></td>
                   <td><?= $c->porcentagem ?></td>
+                  <td><?= $c->legenda ?></td>
                 </tr>
 
                 <?php
@@ -56,7 +58,10 @@ $this->title = $categoria.' - APCEF';
                 ?>
               </table>
             </div>
-            <div class="col-lg-6 table-responsive">
+          </div>
+
+          <div class="row">
+          <div class="col-lg-6 table-responsive">
               <h4>Disciplina <small>A equipe que sofrer wxo estará eliminada do troféu disciplina!</small></h4>
               <table class="table table-striped table-hover table-condensed">
                 <tr>
@@ -71,7 +76,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($classDisciplinar as $cd):
                 ?>
                 <tr>
-                  <td><?= Html::img('@web/media-files/logo/'.$cd->equipe.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$cd->equipe.'.bmp') ?></td>
                   <td><?= Html::a($cd->equipe, ['site/equipe','id'=>$cd->id]) ?></td>
                   <td><?= $cd->classificacao_disciplinar ?></td>
                   <td><?= $cd->pontuacaoCartoes ?></td>
@@ -81,9 +86,6 @@ $this->title = $categoria.' - APCEF';
               <?php endforeach ?>
             </table>
             </div>
-          </div>
-
-          <div class="row">
             <div class="col-lg-6 table-responsive">
               <h4>Artilheiros série ouro <small>Clique sobre o atleta</small></h4>
               <table class="table table-striped table-hover table-condensed">
@@ -98,7 +100,7 @@ $this->title = $categoria.' - APCEF';
                  foreach ($artilheiros as $a):
                 ?>
                 <tr>
-                  <td><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
                   <td><?= Html::a($a->nome_jogador, ['site/gol','id'=>$a->id]) ?></td>
                   <td><?= $a->gols ?></td>
                   <td><?= $a->amarelo ?></td>
@@ -107,7 +109,10 @@ $this->title = $categoria.' - APCEF';
               <?php endforeach ?>
               </table>
             </div>
-            <div class="col-lg-6 table-responsive">
+          </div>
+
+          <div class="row">
+          <div class="col-lg-6 table-responsive">
               <h4>Atletas que marcaram gol contra</h4>
               <table class="table table-striped table-hover table-condensed">
                 <tr>
@@ -120,7 +125,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($golsContra as $gc) :
                 ?>
                 <tr>
-                  <td><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
                   <td><?= Html::a($a->nome_jogador, ['site/gol','id'=>$a->id]) ?></td>
                   <td><?php echo $a->gol_contra ?></td>
                   <td><?php echo $a->partidas ?></td>
@@ -128,9 +133,6 @@ $this->title = $categoria.' - APCEF';
               <?php endforeach ?>
               </table>
             </div>
-          </div>
-
-          <div class="row">
             <div class="col-lg-6 table-responsive">
               <h4>Melhores ataque</h4>
               <table class="table table-striped table-hover table-condensed">
@@ -144,7 +146,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($atakMaisPositivo as $amp) :
                  ?>
                  <tr>
-                   <td><?= Html::img('@web/media-files/logo/'.$amp->equipe.'.bmp') ?></td>
+                   <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$amp->equipe.'.bmp') ?></td>
                    <td><?= Html::a($amp->equipe, ['site/equipe','id'=>$amp->id]) ?></td>
                    <td><?php echo $amp->GP ?></td>
                    <td><?php echo $amp->part ?></td>
@@ -152,7 +154,9 @@ $this->title = $categoria.' - APCEF';
                <?php endforeach ?>
               </table>
             </div>
-            <div class="col-lg-6 table-responsive">
+          </div>
+          <div class="row">
+          <div class="col-lg-6 table-responsive">
               <h4>Melhores defesa</h4>
               <table class="table table-striped table-hover table-condensed">
                 <tr>
@@ -165,10 +169,31 @@ $this->title = $categoria.' - APCEF';
                 foreach ($melhorDefesa as $md):
                 ?>
                 <tr>
-                  <td><?= Html::img('@web/media-files/logo/'.$md->equipe.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$md->equipe.'.bmp') ?></td>
                   <td><?= Html::a($md->equipe, ['site/equipe','id'=>$md->id]) ?></td>
                   <td><?= $md->GC ?></td>
                   <td><?= $md->part ?></td>
+                </tr>
+              <?php endforeach ?>
+              </table>
+            </div>
+            <div class="col-lg-6 table-responsive">
+              <h4>Goleiros Artilheiros</h4>
+              <table class="table table-striped table-hover table-condensed">
+                <tr>
+                  <th></th>
+                  <th>Goleiro</th>
+                  <th>Gols</th>
+                  <th>Número do Jogo</th>
+                </tr>
+                <?php
+                foreach ($goleirosArtilheiros as $a) :
+                ?>
+                <tr>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
+                  <td><?= Html::a($a->nome_jogador, ['site/gol','id'=>$a->id]) ?></td>
+                  <td><?php echo $a->gol_contra ?></td>
+                  <td><?php echo $a->partidas ?></td>
                 </tr>
               <?php endforeach ?>
               </table>
