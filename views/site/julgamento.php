@@ -15,7 +15,6 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
-					    <h5>PAUTA DE JULGAMENTO</h5>
 					    <div class="text-center">
 					    	<table class="table table-hover">
 								  <tr>
@@ -27,6 +26,7 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 										</td>
 								  </tr>
 								</table>
+								<h5 class="text-center">PAUTA DE JULGAMENTO</h5>
 								<table class="table table-hover">
 									<tr>
 										<th>Equipe</th>
@@ -40,18 +40,59 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 									<tr>
 										<td><?php echo $a->equipe ?></td>
 										<td><?php echo $a->categoria ?></td>
-										<td><?php echo $a->nome_jogador ?></td>
+										<td><?php echo $a->atleta ?></td>
 										<td><?php echo Yii::$app->formatter->asDate($a->data, 'd/M/Y') ?></td>
 									</tr>
 								<?php endforeach; ?>
 								<tr>
 									<td colspan="2">Números de Processos: <?php echo count($julgamento) ?></td>
-									<td colspan="2">Dados atualizados pela Coordenação do campeonato</td>
+									<td colspan="4">Dados atualizados pela Coordenação do campeonato</td>
 								</tr>
 								</table>
+							</div>
+						</div>
+					<!-- Piont Table -->
+
 </div>
+<!-- Match Result Contenet -->
 </div>
-<!-- Piont Table -->
+<div class="row">
+					<!-- Match Result Contenet -->
+					<div class="col-lg-12 col-sm-12">
+
+					  <!-- Piont Table -->
+					  <div class="macth-fixture">
+					    <h5 class="text-center">RESULTADO JULGAMENTO</h5>
+					    <div class="text-center">
+								<table class="table table-hover">
+									<tr>
+										<th>Equipe</th>
+										<th>Categoria</th>
+										<th>Atleta</th>
+										<th>Artigo</th>
+										<th>Pena</th>
+										<th>Data Julgamento</th>
+									</tr>
+									<?php
+										foreach ((array)$rjulgamento as $a):
+									?>
+									<tr>
+										<td><?php echo $a->equipe ?></td>
+										<td><?php echo $a->categoria ?></td>
+										<td><?php echo $a->atleta ?></td>
+										<td><?php echo $a->artigo?></td>
+										<td><?php echo $a->pena ?></td>
+										<td><?php echo Yii::$app->formatter->asDate($a->datajulgamento, 'd/M/Y') ?></td>
+									</tr>
+								<?php endforeach; ?>
+								<tr>
+									<td colspan="2">Números de Processos: <?php echo count($rjulgamento) ?></td>
+									<td colspan="4">Dados atualizados pela Coordenação do campeonato</td>
+								</tr>
+								</table>
+							</div>
+						</div>
+					<!-- Piont Table -->
 
 </div>
 <!-- Match Result Contenet -->

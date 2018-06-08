@@ -181,8 +181,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
       if($param == 'julgamento'){
-        $julgamento = Julgamento::find()->where(['convocado'=>'SIM'])->orderBy('nome_jogador')->all();
-        return $this->render('julgamento', ['noticias'=>$noticias, 'julgamento'=>$julgamento, 'param'=>$param]);
+        $julgamento = Julgamento::find()->where(['LOWER(pena)'=>'falta julgar'])->orderBy('atleta')->all();
+        $rjulgamento = Julgamento::find()->where(['LOWER(resultado)'=>'r'])->orderBy('atleta')->all();
+        return $this->render('julgamento', ['noticias'=>$noticias, 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
       }elseif($param == 'suspensos'){
         $suspensos = Jogadores::find()->where(['LOWER(cartao)'=>'suspenso'])->orderBy('nome_jogador')->all();
         return $this->render('suspensos', ['noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);

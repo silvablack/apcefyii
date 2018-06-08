@@ -7,18 +7,19 @@ use Yii;
 /**
  * This is the model class for table "julgamento".
  *
- * @property int $id
- * @property string $numero_processo
+ * @property int $id_codigo
+ * @property string $atleta
+ * @property string $equipe
  * @property int $jogo
  * @property string $data
- * @property string $nome_jogador
- * @property string $equipe
- * @property string $categoria
- * @property string $data_analise
+ * @property string $processo
+ * @property string $relato
+ * @property string $datajulgamento
  * @property string $horario
- * @property string $ocorrencia
- * @property string $convocado
- * @property int $id_competicao
+ * @property string $categoria
+ * @property string $artigo
+ * @property string $pena
+ * @property string $resultado
  */
 class Julgamento extends \yii\db\ActiveRecord
 {
@@ -36,11 +37,15 @@ class Julgamento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'numero_processo', 'jogo', 'data', 'nome_jogador', 'equipe', 'categoria', 'data_analise', 'horario', 'ocorrencia', 'convocado', 'id_competicao'], 'required'],
-            [['id', 'jogo', 'id_competicao'], 'integer'],
-            [['data', 'data_analise'], 'safe'],
-            [['numero_processo', 'nome_jogador', 'equipe', 'categoria', 'horario', 'ocorrencia', 'convocado'], 'string', 'max' => 255],
-            [['id'], 'unique'],
+            [['atleta', 'equipe', 'jogo', 'data', 'processo', 'relato', 'datajulgamento', 'horario', 'categoria', 'artigo', 'pena', 'resultado'], 'required'],
+            [['jogo'], 'integer'],
+            [['data', 'datajulgamento'], 'safe'],
+            [['relato'], 'string'],
+            [['atleta', 'equipe'], 'string', 'max' => 80],
+            [['processo', 'resultado'], 'string', 'max' => 10],
+            [['horario'], 'string', 'max' => 5],
+            [['categoria'], 'string', 'max' => 60],
+            [['artigo', 'pena'], 'string', 'max' => 30],
         ];
     }
 
@@ -50,18 +55,19 @@ class Julgamento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'numero_processo' => Yii::t('app', 'Número Processo'),
+            'id_codigo' => Yii::t('app', 'Id Codigo'),
+            'atleta' => Yii::t('app', 'Atleta'),
+            'equipe' => Yii::t('app', 'Equipe'),
             'jogo' => Yii::t('app', 'Jogo'),
             'data' => Yii::t('app', 'Data'),
-            'nome_jogador' => Yii::t('app', 'Nome Jogador'),
-            'equipe' => Yii::t('app', 'Equipe'),
+            'processo' => Yii::t('app', 'Processo'),
+            'relato' => Yii::t('app', 'Relato'),
+            'datajulgamento' => Yii::t('app', 'Datajulgamento'),
+            'horario' => Yii::t('app', 'Horario'),
             'categoria' => Yii::t('app', 'Categoria'),
-            'data_analise' => Yii::t('app', 'Data Análise'),
-            'horario' => Yii::t('app', 'Horário'),
-            'ocorrencia' => Yii::t('app', 'Ocorrência'),
-            'convocado' => Yii::t('app', 'Convocado'),
-            'id_competicao' => Yii::t('app', 'Id Competicao'),
+            'artigo' => Yii::t('app', 'Artigo'),
+            'pena' => Yii::t('app', 'Pena'),
+            'resultado' => Yii::t('app', 'Resultado'),
         ];
     }
 
