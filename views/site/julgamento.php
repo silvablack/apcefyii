@@ -40,7 +40,7 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 									<tr>
 										<td><?php echo $a->equipe ?></td>
 										<td><?php echo $a->categoria ?></td>
-										<td><?php echo $a->atleta ?></td>
+										<td><?php echo $a->nome_jogador ?></td>
 										<td><?php echo Yii::$app->formatter->asDate($a->data, 'd/M/Y') ?></td>
 									</tr>
 								<?php endforeach; ?>
@@ -79,10 +79,10 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 									<tr>
 										<td><?php echo $a->equipe ?></td>
 										<td><?php echo $a->categoria ?></td>
-										<td><?php echo $a->atleta ?></td>
+										<td><?php echo $a->nome_jogador ?></td>
 										<td><?php echo $a->artigo?></td>
 										<td><?php echo $a->pena ?></td>
-										<td><?php echo Yii::$app->formatter->asDate($a->datajulgamento, 'd/M/Y') ?></td>
+										<td><?php echo Yii::$app->formatter->asDate($a->data_analise, 'd/M/Y') ?></td>
 									</tr>
 								<?php endforeach; ?>
 								<tr>

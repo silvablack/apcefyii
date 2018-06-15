@@ -15,7 +15,7 @@ class JulgamentoQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Julgamento[]|array
      */
     public function all($db = null)
@@ -24,7 +24,7 @@ class JulgamentoQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Julgamento|array|null
      */
     public function one($db = null)
