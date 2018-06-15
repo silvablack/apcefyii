@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Atualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Excluir'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('app', 'Você deseja excluir esta notícia?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,10 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'titulo',
-            'noticia:ntext',
-            'categoria',
+            'noticia:html',
+            'categoria0.categoria',
             'data',
         ],
     ]) ?>
-
+    <div class="row">
+    <?php foreach($model->noticiasImgs as $i): ?>
+        <div class="col-md-2 img-responsive" style="height:200px;margin:10px;overflow:hidden">
+            <?= Html::img('@web/images/gallery/'.$i->src,['height'=>'200px']); ?>
+        </div>
+    <?php endforeach; ?>
+    </div>
 </div>

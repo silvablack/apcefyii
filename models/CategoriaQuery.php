@@ -15,7 +15,7 @@ class CategoriaQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Categoria[]|array
      */
     public function all($db = null)
@@ -24,7 +24,7 @@ class CategoriaQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Categoria|array|null
      */
     public function one($db = null)

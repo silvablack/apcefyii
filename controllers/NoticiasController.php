@@ -9,7 +9,9 @@ use app\models\NoticiasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\UploadForm;
+use app\models\NoticiasImg;
+use yii\web\UploadedFile;
 /**
  * NoticiasController implements the CRUD actions for Noticias model.
  */
@@ -78,13 +80,20 @@ class NoticiasController extends Controller
     public function actionCreate()
     {
         $model = new Noticias();
+        $modelImg = new UploadForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isPost) {
+            $modelImg->imageFiles = UploadedFile::getInstances($modelImg, 'imageFiles');
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                if($modelImg->upload($model->id)){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }     
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelImg'=>$modelImg,
         ]);
     }
 
@@ -105,6 +114,7 @@ class NoticiasController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'modelImg'=>new UploadForm(),
         ]);
     }
 
@@ -118,6 +128,13 @@ class NoticiasController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $imgs = NoticiasImg::find()->where(['noticia_id'=>$id])->all();
+        if(count($imgs) > 0){
+            foreach($imgs as $i){
+                unlink(Yii::$app->getAlias('@web').'/images/gallery/'.$i->src);
+            }
+            NoticiasImg::deleteAll('noticia_id = '.$id);
+        }
 
         return $this->redirect(['index']);
     }

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticias */
 
-$this->title = Yii::t('app', 'Create Noticias');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Noticias'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Nova Notícia');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Notícia'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="noticias-create">
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelImg'=>$modelImg
     ]) ?>
 
 </div>

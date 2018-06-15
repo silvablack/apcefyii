@@ -89,7 +89,18 @@ AppAssetPainel::register($this);
         </nav>
         <div id="page-wrapper">
            <div class="row">
-               
+           <div style="margin-top:10px;">
+                <?php
+                    echo Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        'homeLink'=>[
+                            'label' => 'Início',  // required
+                            'url' => yii\helpers\Url::to(['painel/index']),      // optional, will be processed by Url::to()
+                            
+                        ]
+                    ]);
+                ?>
+            </div>
                <?= $content ?>
            </div>
          </div>

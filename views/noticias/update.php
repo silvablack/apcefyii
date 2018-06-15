@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticias */
 
-$this->title = Yii::t('app', 'Update Noticias: {nameAttribute}', [
-    'nameAttribute' => $model->id,
+$this->title = Yii::t('app', 'Atualizar Notícia: {nameAttribute}', [
+    'nameAttribute' => \yii\helpers\StringHelper::truncate($model->titulo,50),
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Noticias'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Atualizar');
 ?>
 <div class="noticias-update">
 
@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelImg'=>$modelImg
     ]) ?>
 
 </div>

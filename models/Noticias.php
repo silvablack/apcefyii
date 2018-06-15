@@ -13,12 +13,13 @@ use Yii;
  * @property int $categoria
  * @property string $data
  *
+ * @property Categoria $categoria0
  * @property NoticiasImg[] $noticiasImgs
  */
 class Noticias extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -26,7 +27,7 @@ class Noticias extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -36,21 +37,30 @@ class Noticias extends \yii\db\ActiveRecord
             [['categoria'], 'integer'],
             [['data'], 'safe'],
             [['titulo'], 'string', 'max' => 100],
+            [['categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria' => 'id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'titulo' => Yii::t('app', 'Título'),
-            'noticia' => Yii::t('app', 'Notícia'),
+            'titulo' => Yii::t('app', 'Titulo'),
+            'noticia' => Yii::t('app', 'Noticia'),
             'categoria' => Yii::t('app', 'Categoria'),
             'data' => Yii::t('app', 'Data'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoria0()
+    {
+        return $this->hasOne(Categoria::className(), ['id' => 'categoria']);
     }
 
     /**
@@ -62,7 +72,7 @@ class Noticias extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return NoticiasQuery the active query used by this AR class.
      */
     public static function find()

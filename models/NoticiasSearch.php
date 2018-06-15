@@ -12,14 +12,15 @@ use app\models\Noticias;
  */
 class NoticiasSearch extends Noticias
 {
+    public $categoria;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'categoria'], 'integer'],
-            [['titulo', 'noticia', 'data'], 'safe'],
+            [['id'], 'integer'],
+            [['titulo', 'noticia', 'data','categoria'], 'safe'],
         ];
     }
 
@@ -42,12 +43,17 @@ class NoticiasSearch extends Noticias
     public function search($params)
     {
         $query = Noticias::find();
+        $query->joinWith(['categoria0']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $dataProvider->sort->attributes['categoria'] = [
+            'asc'=>['categoria.categoria'=>SORT_ASC],
+            'desc'=>['categoria.categoria'=>SORT_DESC]
+        ];
 
         $this->load($params);
 
@@ -65,7 +71,10 @@ class NoticiasSearch extends Noticias
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'noticia', $this->noticia]);
+            ->andFilterWhere(['like', 'noticia', $this->noticia])
+            ->andFilterWhere(['like','categoria.categoria',$this->categoria]);
+
+        $query->orderBy('data DESC');
 
         return $dataProvider;
     }

@@ -15,7 +15,7 @@ class NoticiasQuery extends \yii\db\ActiveQuery
     }*/
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Noticias[]|array
      */
     public function all($db = null)
@@ -24,7 +24,7 @@ class NoticiasQuery extends \yii\db\ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return Noticias|array|null
      */
     public function one($db = null)

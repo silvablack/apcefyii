@@ -9,11 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $categoria
+ *
+ * @property Noticias[] $noticias
  */
 class Categoria extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -21,7 +23,7 @@ class Categoria extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -32,7 +34,7 @@ class Categoria extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -43,7 +45,15 @@ class Categoria extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNoticias()
+    {
+        return $this->hasMany(Noticias::className(), ['categoria' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
      * @return CategoriaQuery the active query used by this AR class.
      */
     public static function find()
