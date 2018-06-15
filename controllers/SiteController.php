@@ -15,6 +15,7 @@ use app\models\Jogadores;
 use app\models\Categoria;
 use app\models\Julgamento;
 use app\models\Equipes;
+use app\models\InfoJulgamento;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -183,7 +184,7 @@ class SiteController extends Controller
       if($param == 'julgamento'){
         $julgamento = Julgamento::find()->where(['LOWER(convocado)'=>'sim'])->orderBy('nome_jogador')->all();
         $rjulgamento = Julgamento::find()->where(['LOWER(resultado)'=>'r'])->orderBy('nome_jogador')->all();
-        return $this->render('julgamento', ['noticias'=>$noticias, 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
+        return $this->render('julgamento', ['noticias'=>$noticias,'infoj'=>InfoJulgamento::find()->one(), 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
       }elseif($param == 'suspensos'){
         $suspensos = Jogadores::find()->where(['LOWER(cartao)'=>'suspenso'])->orderBy('nome_jogador')->all();
         return $this->render('suspensos', ['noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);
