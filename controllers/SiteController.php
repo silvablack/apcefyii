@@ -181,8 +181,8 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
       if($param == 'julgamento'){
-        $julgamento = Julgamento::find()->where(['LOWER(pena)'=>'falta julgar'])->orderBy('atleta')->all();
-        $rjulgamento = Julgamento::find()->where(['LOWER(resultado)'=>'r'])->orderBy('atleta')->all();
+        $julgamento = Julgamento::find()->where(['LOWER(convocado)'=>'sim'])->orderBy('nome_jogador')->all();
+        $rjulgamento = Julgamento::find()->where(['LOWER(resultado)'=>'r'])->orderBy('nome_jogador')->all();
         return $this->render('julgamento', ['noticias'=>$noticias, 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
       }elseif($param == 'suspensos'){
         $suspensos = Jogadores::find()->where(['LOWER(cartao)'=>'suspenso'])->orderBy('nome_jogador')->all();
@@ -211,7 +211,7 @@ class SiteController extends Controller
       $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GC')->where(['>', 'GC', 0])->all();
       $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('classificacao_disciplinar')->where(['>', 'classificacao_disciplinar', 0])->all();
       $artilheiros = Jogadores::find()->where(['categoria'=>$categoria[$param]])->orderBy('gols DESC, nome_jogador ASC')->limit(10)->all();
-      $golsContra = Jogadores::find()->where(['categoria'=>$categoria[$param]])->orderBy('gol_contra DESC, nome_jogador')->limit(10)->all();
+      $golsContra = Jogadores::find()->where(['categoria'=>$categoria[$param]])->andWhere('gol_contra > 0')->orderBy('nome_jogador')->limit(10)->all();
 
       $goleirosArtilheiros = Jogadores::find()->where(['categoria'=>$categoria[$param], 'jgd'=>'Gol'])->orderBy('gols DESC, nome_jogador ASC')->limit(10)->all();
 
@@ -243,7 +243,7 @@ class SiteController extends Controller
     public function actionTabelagol($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN ((SELECT * FROM noticias LIMIT 1) n ) ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
             ->queryAll();
       return $this->render('embreve', ['noticias'=>$noticias]);
     }
