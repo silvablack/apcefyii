@@ -211,10 +211,15 @@ class SiteController extends Controller
       $atakMaisPositivo = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GP DESC')->all();
       $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GC')->where(['>', 'GC', 0])->all();
       $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('classificacao_disciplinar')->where(['>', 'classificacao_disciplinar', 0])->all();
-      $artilheiros = Jogadores::find()->where(['categoria'=>$categoria[$param]])->orderBy('gols DESC, nome_jogador ASC')->limit(10)->all();
-      $golsContra = Jogadores::find()->where(['categoria'=>$categoria[$param]])->andWhere('gol_contra > 0')->orderBy('nome_jogador')->limit(10)->all();
+      
+      $sqlArt = 'SELECT * FROM jogadores WHERE categoria = :cat AND gols > :gols ORDER BY gols DESC LIMIT 10';
+      $artilheiros = Jogadores::findBySql($sqlArt,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
+      
+      $sqlGolsContra = 'SELECT * FROM jogadores WHERE categoria = :cat AND gol_contra > :gols ORDER BY gol_contra DESC LIMIT 10';
+      $golsContra = Jogadores::findBySql($sqlGolsContra,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
 
-      $goleirosArtilheiros = Jogadores::find()->where(['categoria'=>$categoria[$param], 'jgd'=>'Gol'])->orderBy('gols DESC, nome_jogador ASC')->limit(10)->all();
+      $sqlGolArt = 'SELECT * FROM jogadores WHERE categoria = :cat AND jgd = :jgd AND gols > :gols ORDER BY gols DESC LIMIT 10';
+      $goleirosArtilheiros = Jogadores::findBySql($sqlGolArt,[':gols'=>'0', ':cat'=>$categoria[$param],':jgd'=>'Gol'])->all();
 
       return $this->render('classificacao', [
         'noticias'=>$noticias,
@@ -242,6 +247,14 @@ class SiteController extends Controller
     }
 
     public function actionTabelagol($id){
+      $this->layout = 'interno';
+      //MENU NOTICIAS LAYOUT
+      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN ((SELECT * FROM noticias LIMIT 1) n ) ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+            ->queryAll();
+      return $this->render('embreve', ['noticias'=>$noticias]);
+    }
+
+    public function actionGol($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
       $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN ((SELECT * FROM noticias LIMIT 1) n ) ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')

@@ -125,10 +125,10 @@ $this->title = $categoria.' - APCEF';
                 foreach ($golsContra as $gc) :
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
-                  <td><?= Html::a($a->nome_jogador, ['site/gol','id'=>$a->id]) ?></td>
-                  <td><?php echo $a->gol_contra ?></td>
-                  <td><?php echo $a->partidas ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$gc->time.'.bmp') ?></td>
+                  <td><?= Html::a($gc->nome_jogador, ['site/gol','id'=>$gc->id]) ?></td>
+                  <td><?php echo $gc->gol_contra ?></td>
+                  <td><?php echo $gc->partidas ?></td>
                 </tr>
               <?php endforeach ?>
               </table>
@@ -187,13 +187,13 @@ $this->title = $categoria.' - APCEF';
                   <th>Número do Jogo</th>
                 </tr>
                 <?php
-                foreach ($goleirosArtilheiros as $a) :
+                foreach ($goleirosArtilheiros as $ag) :
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
-                  <td><?= Html::a($a->nome_jogador, ['site/gol','id'=>$a->id]) ?></td>
-                  <td><?php echo $a->gol_contra ?></td>
-                  <td><?php echo $a->partidas ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$ag->time.'.bmp') ?></td>
+                  <td><?= Html::a($ag->nome_jogador, ['site/gol','id'=>$ag->id]) ?></td>
+                  <td><?php echo $ag->gols ?></td>
+                  <td><?php echo $ag->partidas ?></td>
                 </tr>
               <?php endforeach ?>
               </table>
