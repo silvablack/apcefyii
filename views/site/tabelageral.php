@@ -37,16 +37,16 @@ h5{
 									<thead>
 										<tr>
 											<td colspan="2" style="width:33.33%;vertical-align: middle;">
-												<h3>Presidente</h3>
-												<p>Giselle Menezes</p>
+												<h3>Giselle Menezes</h3>
+												<p>Presidente</p>
 											</td>
 											<td colspan="2" style="width:33.33%;vertical-align: middle;"><h5><?= $jogos[0]->fase ?></h5></td>
 											<td colspan="2" style="width:33.33%;">
-												<h3>Diretor de Esportes</h3>
-												<p>Eusébio FIlho</p>
+												<h3>Eusébio FIlho</h3>
+												<p>Diretor de Esportes</p>
 												<hr />
-												<h3>Coordenação</h3>
-												<p>Filon Monteiro/Francielo</p>
+												<h3>Filon Monteiro/Francielo</h3>
+												<p>Coordenação</p>
 											</td>
 										</tr>
 										<tr>
