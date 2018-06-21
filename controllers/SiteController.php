@@ -217,7 +217,8 @@ class SiteController extends Controller
             ->queryAll();
 
       $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('class')->where(['>', 'class', 0])->all();
-      $atakMaisPositivo = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GP DESC')->all();
+      $sqlAtk = 'SELECT * FROM equipes WHERE categoria = :cat AND GP > :gols ORDER BY GP DESC';
+      $atakMaisPositivo = Equipes::findBySql($sqlAtk,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
       $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GC')->where(['>', 'GC', 0])->all();
       $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('classificacao_disciplinar')->where(['>', 'classificacao_disciplinar', 0])->all();
       
