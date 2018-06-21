@@ -70,7 +70,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       $lastnews = Noticias::find()->orderBy('id DESC')->joinWith(['noticiasImgs'])->limit(10)->all();
       $lastgames = Jogos::find()->orderBy('data_jogo')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
@@ -85,7 +86,8 @@ class SiteController extends Controller
       $pages = new Pagination(['totalCount'=>$countQuery->count()]);
       $model = $query->offset($pages->offset)->limit($pages->limit)->all();
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
 
             $translate_categoria = array(
@@ -106,7 +108,8 @@ class SiteController extends Controller
     public function actionNoticia($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
 
       $model = Noticias::find()->where(['noticias.id'=>$id])->joinWith(['noticiasImgs'])->one();
@@ -116,7 +119,8 @@ class SiteController extends Controller
     public function actionAtestado($param){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       $model = new Jogadores;
       if($param == 'PEN'){
@@ -136,7 +140,8 @@ class SiteController extends Controller
     public function actionFutsal($ano){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       return $this->render('futsal',['noticias'=>$noticias, 'ano'=>$ano]);
     }
@@ -144,7 +149,8 @@ class SiteController extends Controller
     public function actionSociety($ano){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       return $this->render('society',['noticias'=>$noticias, 'ano'=>$ano]);
     }
@@ -153,7 +159,8 @@ class SiteController extends Controller
       $categoria = Categoria::findOne($categoria);
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')->queryAll();
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')->queryAll();
       $jogos = [];
       if($rodada == NULL){
         $jogos = Jogos::find()->orderBy('data_jogo, hora')->where(['categoria'=>$categoria->categoria, 'confirmacao_rodada'=>'SIM'])->all();
@@ -179,7 +186,8 @@ class SiteController extends Controller
     {
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       if($param == 'julgamento'){
         $julgamento = Julgamento::find()->where(['LOWER(convocado)'=>'sim'])->orderBy('nome_jogador')->all();
@@ -204,7 +212,8 @@ class SiteController extends Controller
       ];
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
 
       $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('class')->where(['>', 'class', 0])->all();
@@ -237,7 +246,8 @@ class SiteController extends Controller
     public function actionEquipe($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       $equipe = Equipes::findOne($id);
       $sql = 'SELECT * FROM jogos WHERE categoria = :categoria AND (equipe1 = :eq OR equipe2 = :eq) ORDER BY data_jogo, hora';
@@ -249,7 +259,8 @@ class SiteController extends Controller
     public function actionTabelagol($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN ((SELECT * FROM noticias LIMIT 1) n ) ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       return $this->render('embreve', ['noticias'=>$noticias]);
     }
@@ -257,7 +268,8 @@ class SiteController extends Controller
     public function actionGol($id){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN ((SELECT * FROM noticias LIMIT 1) n ) ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       return $this->render('embreve', ['noticias'=>$noticias]);
     }
@@ -265,7 +277,8 @@ class SiteController extends Controller
     public function actionSumula($jogo){
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       return $this->render('embreve', ['noticias'=>$noticias]);
     }
@@ -279,7 +292,8 @@ class SiteController extends Controller
     {
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
-      $noticias = Yii::$app->db->createCommand('SELECT DISTINCT n.id, n.categoria, n.titulo, n.noticia, n.data, nimg.src FROM noticias_img nimg INNER JOIN noticias n ON n.id = nimg.noticia_id ORDER BY data LIMIT 4 ')
+      $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
+      INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
