@@ -16,9 +16,14 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
 					    <div class="text-center">
+						
 					    	<table class="table table-hover">
 								  <tr>
-								    <td colspan="4" class="text-center">
+								    <td colspan="3" class="text-center">
+									<?= Html::img('@web/media-files/logo_32.jpg',
+										['class'=>'img-responsive','style'=>'position:absolute;left:2em;width:20%;margin:5px auto;']
+										);
+									?>
 											<p><h2>Campeonato de Futsal 2018</h2></p>
 											<p><h3>Arivaldo Ribeiro Cantanhede</h3></p>
 											<p><h3>Atletas a serem julgados</h3></p>

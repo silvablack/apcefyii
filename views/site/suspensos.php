@@ -20,6 +20,10 @@ $this->title = 'TABELA SUSPENSOS - APCEF';
   <!--DWLayoutTable-->
   <tr>
     <td colspan="5">
+	<?= Html::img('@web/media-files/logo_32.jpg',
+										['class'=>'img-responsive','style'=>'position:absolute;left:2em;width:20%;margin:5px auto;']
+										);
+									?>
 			<p><h1>VII Campeonato de Futsal 2018</h2></p>
 				<p><h3>Troféu: Arivaldo Ribeiro Cantanhede</h3></p>
 				<p><h3>Atletas Suspenso</h3></p>

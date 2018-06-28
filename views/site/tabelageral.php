@@ -40,7 +40,13 @@ h5{
 												<h3>Giselle Menezes</h3>
 												<p>Presidente</p>
 											</td>
-											<td colspan="2" style="width:33.33%;vertical-align: middle;"><h5><?= $jogos[0]->fase ?></h5></td>
+											<td colspan="2" style="width:33.33%;vertical-align: middle;">
+											<?= Html::img('@web/media-files/logo_32.jpg',
+												['class'=>'img-responsive','style'=>'width:50%;margin:5px auto;']
+											);
+											?>
+											<h5><?= $jogos[0]->fase ?></h5>
+											</td>
 											<td colspan="2" style="width:33.33%;">
 												<h3>Eusébio FIlho</h3>
 												<p>Diretor de Esportes</p>

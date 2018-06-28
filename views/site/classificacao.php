@@ -11,6 +11,10 @@ $this->title = $categoria.' - APCEF';
     <div class="row">
       <!-- Match Result Contenet -->
       <div class="col-lg-12 col-sm-12">
+      <?= Html::img('@web/media-files/logo_32.jpg',
+						['class'=>'img-responsive','style'=>'width:30%;margin:5px auto;']
+					);
+			?>
         <h2>CLASSIFICAÇÃO QUARENTÃO</h2>
         <p><h4>Scout de classificações</h4></p>
         <!-- Piont Table -->

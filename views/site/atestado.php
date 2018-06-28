@@ -14,6 +14,10 @@ $this->title = ($type == 'PEN') ? 'Pauta de Julgamento':'Atestados Ok'.' - APCEF
 
           <!-- Piont Table -->
           <div class="macth-fixture">
+          <?= Html::img('@web/media-files/logo_32.jpg',
+										['class'=>'img-responsive','style'=>'width:30%;margin:5px auto;']
+										);
+									?>
             <h5><?= ($type == 'PEN')?"Atletas com atestados Pendentes":"Atletas com atestados Ok" ?></h5>
             <div class="last-matches styel-3">
               <div class="table-responsive">
