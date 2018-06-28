@@ -216,7 +216,7 @@ class SiteController extends Controller
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
 
-      $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('class')->where(['>', 'class', 0])->all();
+      $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('class')->andWhere(['>', 'class', 0])->all();
       $sqlAtk = 'SELECT * FROM equipes WHERE categoria = :cat AND GP > :gols ORDER BY GP DESC';
       $atakMaisPositivo = Equipes::findBySql($sqlAtk,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
       $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GC')->where(['>', 'GC', 0])->all();

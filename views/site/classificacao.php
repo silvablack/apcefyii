@@ -15,7 +15,7 @@ $this->title = $categoria.' - APCEF';
 						['class'=>'img-responsive','style'=>'width:30%;margin:5px auto;']
 					);
 			?>
-        <h2>CLASSIFICAÇÃO QUARENTÃO</h2>
+        <h2>CLASSIFICAÇÃO <?= $categoria ?></h2>
         <p><h4>Scout de classificações</h4></p>
         <!-- Piont Table -->
         <div class="macth-fixture">
