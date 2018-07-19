@@ -73,7 +73,7 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-      $lastnews = Noticias::find()->orderBy('id DESC')->joinWith(['noticiasImgs'])->limit(10)->all();
+      $lastnews = Noticias::find()->orderBy('data DESC')->limit(10)->all();
       $lastgames = Jogos::find()->orderBy('data_jogo')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
 
       return $this->render('index', ['noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);

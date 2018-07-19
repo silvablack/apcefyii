@@ -29,9 +29,9 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                         <?php //var_dump($v->noticiasImgs); ?>
                       <li>
                         <?php foreach($v->noticiasImgs as $img): ?>
-                      <img class="img-responsive" style="max-width:615px;max-height:358px;height:358px;" src="/images/gallery/<?php echo $img->src; ?>" alt="">
-                      <?php break; endforeach; ?>
-                        <p><?= StringHelper::truncate($v->titulo,25) ?>: <?= StringHelper::truncate(strip_tags($v->noticia),120) ?>
+                        <img class="img-responsive" style="max-width:615px;max-height:358px;height:358px;" src="/images/gallery/<?php echo $img->src; ?>" alt="">
+                        <?php break; endforeach; ?>
+                        <p><?= StringHelper::truncate($v->titulo,20) ?>: <?= StringHelper::truncate(strip_tags($v->noticia),110) ?>
                           <?= Html::a('Leia mais', ['site/noticia', 'id'=>$v->id]) ?></a></p>
                       </li>
                     <?php	endforeach; ?>
@@ -41,10 +41,10 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 
                   <!-- Thumnail -->
                   <div class="col-sm-3">
-                    <ul id="latest-news-thumb" class="latest-news-thumb">
+                    <ul id="latest-news-thumb" class="latest-news-thumb" style="max-height:415px;height:415px;">
                       <?php foreach($lastnews as $v): ?>
                       <li>
-                        <p><?= StringHelper::truncate(strip_tags($v->noticia),40) ?></p>
+                        <p><?= StringHelper::truncate(strip_tags($v->noticia),35) ?></p>
                         <span><?= Yii::$app->formatter->asDate($v->data) ?></span>
                       </li>
                     <?php	endforeach; ?>

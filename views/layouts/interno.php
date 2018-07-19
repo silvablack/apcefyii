@@ -5,6 +5,7 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -115,9 +116,10 @@ AppAsset::register($this);
   													<!-- Post Img -->
   													<!-- Post Detail -->
   													<div class="large-post-detail style-3 p-0">
-  														<span class="red-color"><a class="newslink" href="<?= Yii::getAlias('@web') ?>/site/noticia?id=<?php echo $v['id']?>">
-  															<?php echo substr($v['titulo'],0,20) ?></a></span>
-  														<p style="word-wrap: break-word;"><?php echo substr(strip_tags($v['noticia']),0,50) ?></p>
+                            <span class="red-color">
+															<?= Html::a(StringHelper::truncate($v['titulo'], 20), '@web/site/noticias?id='.$v['id'], ['class'=>'newslink']) ?>
+														</span>
+  														<p><?= StringHelper::truncate(strip_tags($v['noticia']),38) ?></p>
   													</div>
   													<!-- Post Detail -->
   												</div>
