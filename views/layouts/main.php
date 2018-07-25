@@ -94,7 +94,6 @@ AppAsset::register($this);
   								<ul>
   									<li><?= Html::a('Atestado Pendentes', ['site/atestado', 'param'=>'PEN']); ?></li>
   									<li><?= Html::a('Atestado OK', ['site/atestado', 'param'=>'OK']); ?></li>
-  									<li><?= Html::a('Representantes', ['site/representantes']); ?></li>
 									<li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   								</ul>
   						</li>
@@ -372,7 +371,6 @@ AppAsset::register($this);
   			<ul class="collapse" id="list-1">
           		<li><?= Html::a('Atestado Pendentes', ['site/atestado', 'param'=>'PEN']); ?></li>
   				<li><?= Html::a('Atestado OK', ['site/atestado', 'param'=>'OK']); ?></li>
-  				<li><?= Html::a('Representantes', ['site/representantes']); ?></li>
 				<li><?= Html::a('Tabela Geral',['site/pdf', 'file'=>'tbgeral'], ['target'=>'_blank']) ?></li>
   			</ul>
   		</li>

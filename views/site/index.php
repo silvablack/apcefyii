@@ -55,6 +55,19 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                     </ul>
                   </div>
                   <!-- Thumnail -->
+                  <!-- SIDEBAR BOX -->
+                  <div class="row">
+                    <div class="col-md-4 col-xs-4" style="margin-top:10px;margin-left:10px;">
+                        <p style="font-weight:bold;text-transform:uppercase">Baixe nosso aplicativo</p>
+                        <a target="_blank" href='https://play.google.com/store/apps/details?id=br.com.goldeplacama.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                        <img style="width:100%;" alt='Disponível no Google Play'
+                            src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png'/>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-xs-4" style="margin-top:4em;margin-left:10px;">
+                      <?= Html::img('@web/media-files/apcef-saude.png') ?>
+                    </div>
+                  </div>
 
                 </div>
                 <!-- latest-news Slider -->
@@ -90,11 +103,11 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 
                         <tr>
                             <td>
-                              <div class="logo-width-name"><img src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe1 ?>.bmp" alt=""><p><?php echo $equipe1 ?> <?php echo $placar1 ?></p></div>
+                              <div class="logo-width-name"><img style="width:36px;height:36px;" src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe1 ?>.bmp" alt=""><p><?php echo $equipe1 ?> <?php echo $placar1 ?></p></div>
                             </td>
                             <td style=""><span>X</span></td>
                             <td>
-                              <div class="logo-width-name"><img src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe2 ?>.bmp" alt=""><p><?php echo $equipe2 ?> <?php echo $placar2 ?></p></div>
+                              <div class="logo-width-name"><img style="width:36px;height:36px;" src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe2 ?>.bmp" alt=""><p><?php echo $equipe2 ?> <?php echo $placar2 ?></p></div>
                             </td>
                         </tr>
                         <tr>

@@ -6,11 +6,11 @@ $this->params['noticias'] = $noticias;
 $this->title = ($type == 'PEN') ? 'Pauta de Julgamento':'Atestados Ok'.' - APCEF';
 ?>
   <!-- Match Result -->
-  <div class="theme-padding white-bg">
+  <div class="white-bg">
     <div class="container">
       <div class="row">
         <!-- Match Result Contenet -->
-        <div class="col-lg-9 col-sm-8">
+        <div class="col-lg-10 col-sm-10 col-md-10">
 
           <!-- Piont Table -->
           <div class="macth-fixture">
@@ -28,6 +28,7 @@ $this->title = ($type == 'PEN') ? 'Pauta de Julgamento':'Atestados Ok'.' - APCEF
                           <th>Equipe</th>
                           <th>Categoria</th>
                           <th>Atleta</th>
+                          <th>Data Atestado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,7 @@ $this->title = ($type == 'PEN') ? 'Pauta de Julgamento':'Atestados Ok'.' - APCEF
                           <td><?= $m->time ?></td>
                           <td><?= $m->categoria ?></td>
                           <td><?= $m->nome_jogador ?></td>
+                          <td><?= Yii::$app->formatter->asDate($m->dtatestado,'dd/MM/Y') ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>

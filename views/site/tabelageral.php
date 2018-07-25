@@ -42,7 +42,7 @@ h5{
 											</td>
 											<td colspan="2" style="width:33.33%;vertical-align: middle;">
 											<?= Html::img('@web/media-files/logo_32.jpg',
-												['class'=>'img-responsive','style'=>'width:50%;margin:5px auto;']
+												['class'=>'img-responsive','style'=>'width:50%;height:50%;margin:5px auto;']
 											);
 											?>
 											<h5><?= $jogos[0]->fase ?></h5>
@@ -75,9 +75,9 @@ h5{
 											<td><?= $j->categoria ?></td>
 											<td><?= Html::a($j->equipe1, ['site/sumula', 'jogo'=>$j->njg]) ?></td>
 											<td>
-												<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe1.'.bmp') ?>
+												<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe1.'.bmp',['style'=>'width:36px;height:36px;']) ?>
 												<?= $j->placar1 ?> x <?= $j->placar2 ?>
-												<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe2.'.bmp') ?>
+												<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe2.'.bmp',['style'=>'width:36px;height:36px;']) ?>
 											</td>
 											<td><?= Html::a($j->equipe2, ['site/sumula', 'jogo'=>$j->njg]) ?></td>
 										</tr>

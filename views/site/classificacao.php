@@ -6,13 +6,13 @@ $this->params['noticias'] = $noticias;
 $this->title = $categoria.' - APCEF';
 ?>
 <!-- Match Result -->
-<div class="theme-padding white-bg">
+<div class="white-bg">
   <div class="container">
     <div class="row">
       <!-- Match Result Contenet -->
       <div class="col-lg-12 col-sm-12">
       <?= Html::img('@web/media-files/logo_32.jpg',
-						['class'=>'img-responsive','style'=>'width:30%;margin:5px auto;']
+						['class'=>'img-responsive','style'=>'width:15%;margin:5px auto;']
 					);
 			?>
         <h2>CLASSIFICAÇÃO <?= $categoria ?></h2>
