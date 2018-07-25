@@ -25,8 +25,8 @@ $this->title = 'TABELA SUSPENSOS - APCEF';
 										);
 									?></td>
     <td colspan="4">
-			<p><h1>VII Campeonato de Futsal 2018</h2></p>
-				<p><h3>Troféu: Arivaldo Ribeiro Cantanhede</h3></p>
+			<p><h2><?= $campeonato->nome ?></h2></p>
+				<p><h3><?= $campeonato->trofeu ?></h3></p>
 				<p><h3>Atletas Suspenso</h3></p>
 				<p>Clique sobre o atleta e veja em quais os jogos tomou cartão!</p>
 			</td>

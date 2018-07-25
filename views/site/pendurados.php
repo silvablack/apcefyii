@@ -26,8 +26,8 @@ $this->title = 'TABELA PENDURADOS - APCEF';
 									</td>
 								    <td colspan="3">
 									
-											<p><h1>VII Campeonato de Futsal 2018</h2></p>
-												<p><h3>Troféu: Arivaldo Ribeiro Cantanhede</h3></p>
+											<p><h2><?= $campeonato->nome ?></h2></p>
+												<p><h3><?= $campeonato->trofeu ?></h3></p>
 												<p><h3>Atletas Pendurados</h3></p>
 											</td>
 									</tr>

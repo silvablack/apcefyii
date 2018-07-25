@@ -16,6 +16,7 @@ use app\models\Categoria;
 use app\models\Julgamento;
 use app\models\Equipes;
 use app\models\InfoJulgamento;
+use app\models\Campeonato;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -185,6 +186,7 @@ class SiteController extends Controller
     public function actionDisciplina($param)
     {
       $this->layout = 'interno';
+      $campeonato = Campeonato::find()->one();
       //MENU NOTICIAS LAYOUT
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
@@ -192,13 +194,13 @@ class SiteController extends Controller
       if($param == 'julgamento'){
         $julgamento = Julgamento::find()->where(['LOWER(convocado)'=>'sim'])->orderBy('nome_jogador')->all();
         $rjulgamento = Julgamento::find()->where(['LOWER(resultado)'=>'r'])->orderBy('nome_jogador')->all();
-        return $this->render('julgamento', ['noticias'=>$noticias,'infoj'=>InfoJulgamento::find()->one(), 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
+        return $this->render('julgamento', ['campeonato'=>$campeonato,'noticias'=>$noticias,'infoj'=>InfoJulgamento::find()->one(), 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
       }elseif($param == 'suspensos'){
         $suspensos = Jogadores::find()->where(['LOWER(cartao)'=>'suspenso'])->orderBy('nome_jogador')->all();
-        return $this->render('suspensos', ['noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);
+        return $this->render('suspensos', ['campeonato'=>$campeonato,'noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);
       }elseif($param == 'pendurados'){
         $pendurados = Jogadores::find()->where(['LOWER(cartao)'=>'pendurado'])->orderBy('nome_jogador')->all();
-        return $this->render('pendurados', ['noticias'=>$noticias, 'pendurados'=>$pendurados, 'param'=>$param]);
+        return $this->render('pendurados', ['campeonato'=>$campeonato,'noticias'=>$noticias, 'pendurados'=>$pendurados, 'param'=>$param]);
       }
 
     }
