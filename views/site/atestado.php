@@ -38,7 +38,7 @@ $this->title = ($type == 'PEN') ? 'Pauta de Julgamento':'Atestados Ok'.' - APCEF
                           <td><?= $m->time ?></td>
                           <td><?= $m->categoria ?></td>
                           <td><?= $m->nome_jogador ?></td>
-                          <td><?= Yii::$app->formatter->asDate($m->dtatestado,'dd/MM/Y') ?></td>
+                          <td><?= ($m->dtatestado == '0000-00-00') ? 'PENDENTE': Yii::$app->formatter->asDate($m->dtatestado,'dd/MM/Y') ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
