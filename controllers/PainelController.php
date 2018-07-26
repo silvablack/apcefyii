@@ -15,6 +15,7 @@ use app\models\Jogadores;
 use app\models\Categoria;
 use app\models\Julgamento;
 use app\models\Equipes;
+use app\models\Votacao;
 
 
 class PainelController extends Controller
@@ -128,6 +129,20 @@ class PainelController extends Controller
     
         return $this->render('changePassword', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionVotacao(){
+        $votacao = Votacao::find()->all();
+        $array = [
+            1 => ['label'=>'Ótimo','count'=>count(Votacao::find()->where(['opcao'=>1])->all())],
+            2 => ['label'=>'Bom', 'count'=>count(Votacao::find()->where(['opcao'=>2])->all())],
+            3 => ['label'=>'Regular', 'count'=>count(Votacao::find()->where(['opcao'=>3])->all())],
+        ];
+
+        return $this->render('votacao',[
+            'votacao' => $votacao,
+            'array'=>$array
         ]);
     }
 

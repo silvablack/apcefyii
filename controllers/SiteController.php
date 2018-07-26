@@ -319,4 +319,21 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * Set votacao
+     * @return render
+     */
+    public function actionVotar(){
+      if(Yii::$app->request->isGet){
+        $model = new \app\models\Votacao;
+        $data = Yii::$app->request->get('opcao');
+        $model->opcao = $data;
+        $model->ip = Yii::$app->request->userIP;
+        if($model->save()){
+          \Yii::$app->session->setFlash('votacao:ok', 'Você já votou!');
+          $this->redirect('index');
+        }
+      }
+    }
 }

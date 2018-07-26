@@ -211,29 +211,34 @@ AppAsset::register($this);
   <!-- Footer Column -->
   <div class="col-lg-3 col-xs-6 r-full-width">
   <div class="column-widget h-white">
+    <?php if(\Yii::$app->session->getFlash('votacao:ok')): ?>
+          <?= '<div class="alert alert-success">' . \Yii::$app->session->getFlash('votacao:ok') . '</div>'; ?>
+        <?php else: ?>
   <h5>Avalie-nos</h5>
 
-  <!-- Form -->
-  <form id="contact-form" class="contact-form col-sm-6" action="<?= Yii::getAlias('@web') ?>/site/enquete" method="get" onsubmit="return validaForm()" target="voto">
-  <table style="color:white;">
-  <tbody>
-    <tr>
-      <td><input name="opcao" value="1" type="radio"></td>
-      <td>Ótimo</td>
-    </tr>
-    <tr>
-      <td><input name="opcao" value="2" type="radio"></td>
-      <td>Bom</td>
-    </tr>
-    <tr>
-      <td><input name="opcao" value="3" type="radio"></td>
-      <td>Regular</td>
-    </tr>
-  </tbody>
-  </table>
-  <input class="btn red-btn pull-right" value="Votar" type="submit">
-  </form>
-  <!-- Form -->
+<!-- Form -->
+<form method="get" id="contact-form" class="contact-form col-sm-6" action="<?= Yii::getAlias('@web') ?>/site/votar">
+  								<table style="color:white;">
+  										<tbody>
+  											<tr>
+  												<td><input name="opcao" value="1" type="radio"></td>
+  												<td>Ótimo</td>
+  											</tr>
+  											<tr>
+  												<td><input name="opcao" value="2" type="radio"></td>
+  												<td>Bom</td>
+  											</tr>
+  											<tr>
+  												<td><input name="opcao" value="3" type="radio"></td>
+  												<td>Regular</td>
+  											</tr>
+                      </tbody>
+                  </table>
+                  <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+  									<input class="btn red-btn pull-right" value="Votar" type="submit">
+  							</form>
+                <!-- Form -->
+        <?php endif; ?>
 
   </div>
   </div>

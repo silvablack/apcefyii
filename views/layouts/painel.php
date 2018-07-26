@@ -84,6 +84,9 @@ AppAssetPainel::register($this);
                         <li>
                             <?= Html::a('<i class="fa fa-table fa-fw"></i> Notícias', ['noticias/index']) ?>
                         </li>
+                        <li>
+                            <?= Html::a('<i class="fa fa-table fa-fw"></i> Votação', ['painel/votacao']) ?>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

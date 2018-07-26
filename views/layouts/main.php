@@ -267,10 +267,13 @@ AppAsset::register($this);
   					<!-- Footer Column -->
   					<div class="col-lg-3 col-xs-6 r-full-width">
   						<div class="column-widget h-white">
-  							<h5>Avalie-nos</h5>
+						  <?php if(\Yii::$app->session->getFlash('votacao:ok')): ?>
+          <?= '<div class="alert alert-success">' . \Yii::$app->session->getFlash('votacao:ok') . '</div>'; ?>
+        <?php else: ?>
+  <h5>Avalie-nos</h5>
 
-  							<!-- Form -->
-  							<form id="contact-form" class="contact-form col-sm-6" action="<?= Yii::getAlias('@web') ?>/site/enquete" method="get" onsubmit="return validaForm()" target="voto">
+<!-- Form -->
+<form id="contact-form" method="get" class="contact-form col-sm-6" action="<?= Yii::getAlias('@web') ?>/site/votar">
   								<table style="color:white;">
   										<tbody>
   											<tr>
@@ -289,7 +292,8 @@ AppAsset::register($this);
   								</table>
   									<input class="btn red-btn pull-right" value="Votar" type="submit">
   							</form>
-  							<!-- Form -->
+                <!-- Form -->
+        <?php endif; ?>
 
   						</div>
   					</div>
