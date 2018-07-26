@@ -12,7 +12,7 @@ $this->title = $categoria.' - APCEF';
       <!-- Match Result Contenet -->
       <div class="col-lg-12 col-sm-12">
       <?= Html::img('@web/media-files/logo_32.jpg',
-						['class'=>'img-responsive','style'=>'width:15%;margin:5px auto;']
+						['class'=>'img-responsive logo-campeonato','style'=>'width:15em;margin:5px auto;']
 					);
 			?>
         <h2>CLASSIFICAÇÃO <?= $categoria ?></h2>
@@ -42,7 +42,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($classificacao as $c) :
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::a(Html::img('@web/media-files/logo/'.$c->equipe.'.bmp'), ['site/equipe','id'=>$c->id]) ?></td>
+                  <td style="text-align:center"><?= Html::a(Html::img('@web/media-files/logo/'.$c->equipe.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']), ['site/equipe','id'=>$c->id]) ?></td>
                   <td><?= Html::a($c->equipe, ['site/equipe','id'=>$c->id]) ?></td>
                   <td><?= $c->class ?></td>
                   <td><?= $c->PTS ?></td>
@@ -80,7 +80,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($classDisciplinar as $cd):
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$cd->equipe.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$cd->equipe.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']) ?></td>
                   <td><?= Html::a($cd->equipe, ['site/equipe','id'=>$cd->id]) ?></td>
                   <td><?= $cd->classificacao_disciplinar ?></td>
                   <td><?= $cd->pontuacaoCartoes ?></td>
@@ -104,7 +104,7 @@ $this->title = $categoria.' - APCEF';
                  foreach ($artilheiros as $a):
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$a->time.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']) ?></td>
                   <td><?= Html::a($a->nome_jogador, ['site/gol','id'=>$a->id]) ?></td>
                   <td><?= $a->gols ?></td>
                   <td><?= $a->amarelo ?></td>
@@ -129,7 +129,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($golsContra as $gc) :
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$gc->time.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$gc->time.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']) ?></td>
                   <td><?= Html::a($gc->nome_jogador, ['site/gol','id'=>$gc->id]) ?></td>
                   <td><?php echo $gc->gol_contra ?></td>
                   <td><?php echo $gc->partidas ?></td>
@@ -150,7 +150,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($atakMaisPositivo as $amp) :
                  ?>
                  <tr>
-                   <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$amp->equipe.'.bmp') ?></td>
+                   <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$amp->equipe.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']) ?></td>
                    <td><?= Html::a($amp->equipe, ['site/equipe','id'=>$amp->id]) ?></td>
                    <td><?php echo $amp->GP ?></td>
                    <td><?php echo $amp->part ?></td>
@@ -173,7 +173,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($melhorDefesa as $md):
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$md->equipe.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$md->equipe.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']) ?></td>
                   <td><?= Html::a($md->equipe, ['site/equipe','id'=>$md->id]) ?></td>
                   <td><?= $md->GC ?></td>
                   <td><?= $md->part ?></td>
@@ -194,7 +194,7 @@ $this->title = $categoria.' - APCEF';
                 foreach ($goleirosArtilheiros as $ag) :
                 ?>
                 <tr>
-                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$ag->time.'.bmp') ?></td>
+                  <td style="text-align:center"><?= Html::img('@web/media-files/logo/'.$ag->time.'.bmp', ['style'=>'width:36px;height:36px;max-width:36px;']) ?></td>
                   <td><?= Html::a($ag->nome_jogador, ['site/gol','id'=>$ag->id]) ?></td>
                   <td><?php echo $ag->gols ?></td>
                   <td><?php echo $ag->partidas ?></td>

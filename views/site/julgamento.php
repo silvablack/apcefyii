@@ -15,12 +15,12 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
-					    <div class="text-center">
+					    <div class="text-center table-responsive">
 						
 					    	<table class="table table-hover">
 								  <tr>
 									<td class="col-md-2"><?= Html::img('@web/media-files/logo_32.jpg',
-										['class'=>'img-responsive']
+										['class'=>'img-responsive logo-campeonato','style'=>'margin:5px auto;']
 										);
 									?></td>
 								    <td colspan="3" class="text-justify">
@@ -68,12 +68,12 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
 					    <h5 class="text-center">RESULTADO JULGAMENTO</h5>
-					    <div class="text-center">
+					    <div class="text-center table-responsive">
 								<table class="table table-hover">
 									<tr>
+										<th>Atleta</th>
 										<th>Equipe</th>
 										<th>Categoria</th>
-										<th>Atleta</th>
 										<th>Artigo</th>
 										<th>Pena</th>
 										<th>Data Julgamento</th>
@@ -82,9 +82,9 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 										foreach ((array)$rjulgamento as $a):
 									?>
 									<tr>
+										<td><?php echo $a->nome_jogador ?></td>
 										<td><?php echo $a->equipe ?></td>
 										<td><?php echo $a->categoria ?></td>
-										<td><?php echo $a->nome_jogador ?></td>
 										<td><?php echo $a->artigo?></td>
 										<td><?php echo $a->pena ?></td>
 										<td><?php echo Yii::$app->formatter->asDate($a->data_analise, 'd/M/Y') ?></td>

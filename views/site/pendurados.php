@@ -15,12 +15,12 @@ $this->title = 'TABELA PENDURADOS - APCEF';
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
 					    <h5>TABELA PENDURADOS</h5>
-					    <div class="text-center">
+					    <div class="text-center table-responsive">
 					    	<table class="table table-hover text-justify">
 									<tr>
 									<td class="col-md-2">
 									<?= Html::img('@web/media-files/logo_32.jpg',
-										['class'=>'img-responsive','style'=>'margin:5px auto;']
+										['class'=>'img-responsive logo-campeonato','style'=>'margin:5px auto;']
 										);
 									?>
 									</td>
@@ -32,9 +32,9 @@ $this->title = 'TABELA PENDURADOS - APCEF';
 											</td>
 									</tr>
 									<tr>
+										<th>Atleta</th>
 										<th>Equipe</th>
 										<th>Categoria</th>
-										<th>Atleta</th>
 										<th>C.A.</th>
 									</tr>
 
@@ -43,9 +43,9 @@ $this->title = 'TABELA PENDURADOS - APCEF';
 									?>
 
 									<tr>
+										<td><?= Html::a($p->nome_jogador, ['site/tabelagol', 'id'=>$p->id]) ?></td>
 										<td><?php echo $p->time ?></td>
 										<td><?php echo $p->categoria ?></td>
-										<td><?= Html::a($p->nome_jogador, ['site/tabelagol', 'id'=>$p->id]) ?></td>
 										<td><?php echo $p->amarelo ?></td>
 									</tr>
 								<?php endforeach; ?>

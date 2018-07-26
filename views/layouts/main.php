@@ -195,7 +195,7 @@ AppAsset::register($this);
   		<!-- Nav -->
 
   		</header>
-  		<!-- Header -->
+		  <!-- Header -->
 
   		<!-- Banner slider -->
   		<div id="animated-slider" class="carousel slide carousel-fade">
@@ -220,7 +220,7 @@ AppAsset::register($this);
   				<!-- Wrapper for slides -->
 
   				<!-- News Slider -->
-  		<div class="news-slider style-2">
+  		<div class="news-slider style-2 slide-responsive">
   			<div class="container">
   				<div class="news-slider-holder">
   						<div class="alert-spinner">

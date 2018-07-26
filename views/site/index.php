@@ -41,7 +41,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 
                   <!-- Thumnail -->
                   <div class="col-sm-3">
-                    <ul id="latest-news-thumb" class="latest-news-thumb" style="max-height:415px;height:415px;">
+                    <ul id="latest-news-thumb" class="latest-news-thumb latest-news-thumb-desktop">
                       <?php foreach($lastnews as $v): ?>
                       <li>
                         <p><?= StringHelper::truncate(strip_tags($v->noticia),35) ?></p>
@@ -57,14 +57,14 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                   <!-- Thumnail -->
                   <!-- SIDEBAR BOX -->
                   <div class="row">
-                    <div class="col-md-4 col-xs-4" style="margin-top:10px;margin-left:10px;">
+                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:10px;margin-left:10px;">
                         <p style="font-weight:bold;text-transform:uppercase">Baixe nosso aplicativo</p>
                         <a target="_blank" href='https://play.google.com/store/apps/details?id=br.com.goldeplacama.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
                         <img style="width:100%;" alt='Disponível no Google Play'
                             src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png'/>
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-4" style="margin-top:4em;margin-left:10px;">
+                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:4em;margin-left:10px;">
                       <?= Html::img('@web/media-files/apcef-saude.png') ?>
                     </div>
                   </div>

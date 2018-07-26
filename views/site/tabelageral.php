@@ -32,7 +32,8 @@ h5{
               <div class="pull-right">
                 <?= Html::dropDownList('filter',null,ArrayHelper::merge(["all"=>"TODAS"],ArrayHelper::map($rodadas, 'rodada', 'rodada')), ['prompt'=>'Selecione a rodada', 'id'=>'filter']) ?>
               </div>
-					    <h3 style="margin:0 0 30px"><?= $categoria->categoria ?> - TABELA GERAL</h3>
+						<h3 style="margin:0 0 30px"><?= $categoria->categoria ?> - TABELA GERAL</h3>
+						<div class="table-responsive">
               <table class="table table-bordered table-hover text-center">
 									<thead>
 										<tr>
@@ -87,6 +88,7 @@ h5{
 									</tr>
 									</tbody>
 								</table>
+								</div>
               </div>
               <!-- Match Result Contenet -->
               </div>

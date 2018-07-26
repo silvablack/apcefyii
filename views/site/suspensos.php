@@ -15,13 +15,13 @@ $this->title = 'TABELA SUSPENSOS - APCEF';
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
 					    <h5>TABELA SUSPENSOS</h5>
-					    <div class="styel-3">
+					    <div class="styel-3 table-responsive">
 					    	<table class="table text-justify table-hover">
   <!--DWLayoutTable-->
   <tr>
   <td class="col-md-2">
   <?= Html::img('@web/media-files/logo_32.jpg',
-										['class'=>'img-responsive','style'=>'margin:5px auto;']
+										['class'=>'img-responsive logo-campeonato','style'=>'margin:5px auto;']
 										);
 									?></td>
     <td colspan="4">
@@ -32,17 +32,17 @@ $this->title = 'TABELA SUSPENSOS - APCEF';
 			</td>
 	</tr>
 	<tr>
+		<th>Atleta</th>
 		<th>Equipe</th>
 		<th>Categoria</th>
-		<th>Atleta</th>
 		<th>Dt suspensão</th>
 		<th>Jgs suspenso</th>
 	</tr>
 	<?php	foreach ((array)$suspensos as $s) : ?>
 	<tr>
+		<td><?php echo Html::a($s->nome_jogador, ['site/tabelagol','id'=>$s->id]) ?></td>
 		<td><?php echo $s->time ?></td>
 		<td><?php echo $s->categoria ?></td>
-		<td><?php echo Html::a($s->nome_jogador, ['site/tabelagol','id'=>$s->id]) ?></td>
 		<td><?php echo $s->data_cumprir ?></td>
 		<td><?php echo $s->jogos_cumprir ?></td>
 	</tr>
