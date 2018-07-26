@@ -71,12 +71,12 @@
             $user = $this->_user;
             $user->setPassword($this->password);
 
-            $users = \app\models\Users::findOne(100);
+            $users = \app\models\Users::findOne($user->id);
             $users->password = $user->password;
             if($users->save(false)){
                 return true;
             }else{
-                \Yii::$app->session->setFlash('error', 'Ocorreu um erro, favor, tentar novamente, ou se persistir, entre em contato com o administrador do site.');
+                \Yii::$app->session->setFlash('erro', 'Ocorreu um erro, favor, tentar novamente, ou se persistir, entre em contato com o administrador do site.');
                 return false;
             }
         }
