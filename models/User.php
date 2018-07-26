@@ -98,9 +98,20 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-      if (crypt($password, $this->password) == $this->password)
+      if (crypt($password, \Yii::$app->params['salt']) == $this->password)
         {
         return $password === $password;
         }
     }
+
+    /**
+     * set password
+     *
+     * @param string set $password
+     */
+    public function setPassword($password)
+    {
+      $this->password = crypt($password, \Yii::$app->params['salt']);
+    }
+
 }

@@ -57,7 +57,10 @@ AppAssetPainel::register($this);
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><?= Html::a('<i class="fa fa-sign-out fa-fw"></i> Sair', ['painel/logout'], ['data'=>[
+                        <li>
+                            <?= Html::a('<i class="fa fa-edit fa-fw"></i> ALTERAR SENHA', ['painel/changepassword'])?>
+                        </li>
+                        <li><?= Html::a('<i class="fa fa-sign-out fa-fw"></i> SAIR', ['painel/logout'], ['data'=>[
                           'confirm'=>'Deseja sair?',
                           'method'=>'POST',
                           'params'=>[

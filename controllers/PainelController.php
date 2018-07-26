@@ -104,5 +104,32 @@ class PainelController extends Controller
         return $this->redirect(['painel/login']);
     }
 
+    /**
+    * Change User password.
+    *
+    * @return mixed
+    * @throws BadRequestHttpException
+    */
+    public function actionChangepassword()
+    {
+        $id = \Yii::$app->user->id;
+    
+        try {
+            $model = new \app\models\ChangePasswordForm($id);
+        } catch (InvalidParamException $e) {
+            throw new \yii\web\BadRequestHttpException($e->getMessage());
+        }
+    
+        if ($model->load(\Yii::$app->request->post()) && $model->validate() && $model->changePassword()) {
+            \Yii::$app->session->setFlash('success', 'Senha alterada!');
+            $model->password = '';
+            $model->confirm_password = '';
+        }
+    
+        return $this->render('changePassword', [
+            'model' => $model,
+        ]);
+    }
+
 
 }
