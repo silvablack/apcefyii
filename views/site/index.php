@@ -57,15 +57,18 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                   <!-- Thumnail -->
                   <!-- SIDEBAR BOX -->
                   <div class="row">
-                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:10px;margin-left:10px;">
+                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:10px;">
                         <p style="font-weight:bold;text-transform:uppercase">Baixe nosso aplicativo</p>
                         <a target="_blank" href='https://play.google.com/store/apps/details?id=br.com.goldeplacama.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
                         <img style="width:100%;" alt='Disponível no Google Play'
                             src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png'/>
                         </a>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:4em;margin-left:10px;">
-                      <?= Html::img('@web/media-files/apcef-saude.png') ?>
+                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:4em;">
+                    <?= Html::a(Html::img('@web/media-files/apcef-saude.png'),'http://apcefsaudema.com.br/',['target'=>'_blank']) ?>
+                    </div>
+                    <div class="col-md-3 col-lg-4 col-xs-10" style="margin-top:4em">
+                      <?= Html::a(Html::img('@web/media-files/goldeplaca.png'),'http://www.goldeplacama.com.br',['target'=>'_blank']) ?>
                     </div>
                   </div>
 
