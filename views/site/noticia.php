@@ -13,6 +13,9 @@ $this->registerCss('
   .slick-prev::before, .slick-next::before{
     color: black !important;
   }
+  .slick-dots{
+    padding-bottom:14px;
+  }
 ');
 
 $this->registerJs("
@@ -20,6 +23,7 @@ $this->registerJs("
   $('.single-item').slick({
     infinite: true,
     autoplay: true,
+    autoplaySpeed: 2000,
     speed: 300,
     arrows: true,
     dots: true
