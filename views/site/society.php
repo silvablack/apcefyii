@@ -13,7 +13,7 @@ $this->title = 'CAMPEONATO SOCIETY '.$ano;
 					<div class="col-lg-12 col-sm-12">
 
 					  <!-- Piont Table -->
-					  <div class="macth-fixture">
+					  <div class="macth-fixture table-responsive">
 					    <h5>CAMPEONATO SOCIETY <?= $ano ?></h5>
 					    <div>
               <?php if($ano == 2012): ?>

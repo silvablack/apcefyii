@@ -15,7 +15,7 @@ $this->title = 'CAMPEONATO DE FUTSAL '.$ano;
         <!-- Piont Table -->
         <div class="macth-fixture">
           <h5>CAMPEONATO DE FUTSAL <?= $ano ?></h5>
-          <div class="last-matches styel-3">
+          <div class="last-matches styel-3 table-responsive">
 
 <?php if($ano == 2012): ?>
 <table class="table table-hover">
