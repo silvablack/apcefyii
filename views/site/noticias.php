@@ -41,7 +41,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
               <?php
               foreach($m->noticiasImgs as $img):
               ?>
-                <img style="width:100%;height:400px;" src="<?= Yii::getAlias('@web') ?>/images/gallery/<?= $img->src; ?>" alt="">
+                <?= Html::a(Html::img('@web/images/gallery/'.$img->src,['style'=>'width:100%;height:350px;']),['site/noticia','id'=>$m->id]) ?>
               <?php break;endforeach; ?>
               <span class="blog-title-batch"><?= $categoria ?></span>
             </div>
@@ -54,7 +54,7 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                   <span>em <?= Yii::$app->formatter->asDate($m->data) ?> </span>
                 </div>
               </div>
-              <h2><?= Html::a($m->titulo,['#']) ?></h2>
+              <h2><?= Html::a($m->titulo,['site/noticia','id'=>$m->id]) ?></h2>
               <p><?= StringHelper::truncate($m->noticia,440) ?></p>
               <?= Html::a('<i>+</i> leia mais',['site/noticia','id'=>$m->id], ['class'=>'btn gary-btn']) ?>
             </div>
