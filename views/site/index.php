@@ -55,8 +55,15 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                     </ul>
                   </div>
                   <!-- Thumnail -->
-                  <!-- SIDEBAR BOX -->
-                  <div class="row">
+                  
+                <!-- latest-news Slider -->
+
+              </div>
+            </div>
+            <!-- Latest News -->
+
+            <!-- SIDEBAR BOX -->
+            <div class="row">
                     <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:10px;">
                         <p style="font-weight:bold;text-transform:uppercase">Baixe nosso aplicativo</p>
                         <a target="_blank" href='https://play.google.com/store/apps/details?id=br.com.goldeplacama.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
@@ -73,11 +80,6 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                   </div>
 
                 </div>
-                <!-- latest-news Slider -->
-
-              </div>
-            </div>
-            <!-- Latest News -->
 
             <!-- Upcoming Fixture -->
             <div class="col-lg-4 col-sm-12 col-xs-12 r-full-width">
