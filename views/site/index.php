@@ -86,8 +86,6 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
               <h3><span><i class="red-color">PRÓXIMAS </i>PARTIDAS</span><a class="view-all pull-right" href="#"><i class="fa fa-angle-double-right"></i></a></h3>
               <div class="upcoming-fixture next-tb">
                 <div class="table-responsive">
-                  <table class="table text-center table-condensed" style="border-right:1px solid #CC0000;border-left:1px solid #CC0000;border-bottom:1px solid #CC0000;">
-                      <tbody>
                         <?php
                         if(count($lastgames)>0):
                           foreach ($lastgames as $linha) :
@@ -105,28 +103,32 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                             $dataformat = date("d/m/y",$datahora);
 
                           ?>
+                          <div class="next-match container-fluid">
+                            <div class="row nt-match-body text-center" style="padding-top:2em;">
+                              <div class="col-lg-5">
+                                  <?= Html::img('@web/media-files/logo/'.$equipe1.'.bmp',['style'=>'width:36px;height:36px;']); ?>
+                                  <p class="nt-match-title"><?php echo str_replace('_',' ',$equipe1) ?></p>
+                              </div>
+                              <div class="col-lg-2 placar">
+                                <span><?php echo $placar1 ?>X<?php echo $placar2 ?></span>
+                              </div>
+                              <div class="col-lg-5 nt-match-title">
+                                  <?= Html::img('@web/media-files/logo/'.$equipe2.'.bmp',['style'=>'width:36px;height:36px;']); ?>
+                                  <p class="nt-match-title"><?php echo str_replace('_',' ',$equipe2) ?></p>
+                              </div>
+                            </div>
+                            <div class="row nt-match-footer text-center" style="padding-bottom:1em;">
+                              <div class="col-lg-12">
+                                <span><?php echo $dataformat." <br> ".$dia." - ".$hora." <br> ".$categoria ?></span>
+                              </div>
+                            </div>
+                          </div>
 
-                        <tr>
-                            <td>
-                              <div class="logo-width-name"><img style="width:36px;height:36px;" src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe1 ?>.bmp" alt=""><p><?php echo $equipe1 ?> <?php echo $placar1 ?></p></div>
-                            </td>
-                            <td style=""><span>X</span></td>
-                            <td>
-                              <div class="logo-width-name"><img style="width:36px;height:36px;" src="<?= Yii::getAlias('@web') ?>/media-files/logo/<?php echo $equipe2 ?>.bmp" alt=""><p><?php echo $equipe2 ?> <?php echo $placar2 ?></p></div>
-                            </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3" style="font-size:10px;color:#CC0000;font-weight:bold;"><span><?php echo $dataformat." <br> ".$dia." - ".$hora." <br> ".$categoria ?></span></td>
-                        </tr>
                         <?php
                       endforeach;
                         else:
                            ?>
-                        <tr>
-                            <td>
-                              <p class="bg-info">Sem informações disponíveis no momento.</p>
-                            </td>
-                        </tr>
+                       <p class="bg-info">Sem informações disponíveis no momento.</p>
                       <?php endif; ?>
                       </tbody>
                   </table>

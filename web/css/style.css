@@ -1,4 +1,16 @@
 .next-tb table tbody tr td{padding: 2px !important;width:50px !important;vertical-align: middle;}
+.next-match .nt-match-body, .nt-match-footer{
+    font-weight: bold;
+}
+.next-match .nt-match-title{
+    word-break: break-word;
+}
+.next-match .nt-match-footer{
+    border-bottom: 1px solid #000;
+}
+.next-match .placar{
+    font-size:2em;
+}
 
 /*
  @Author: Fine Layer

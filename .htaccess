@@ -1,3 +1,7 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 <IfModule mod_rewrite.c> 
   RewriteEngine on
 
@@ -13,8 +17,3 @@ Deny from all
 
 # Deny accessing dot files
 RewriteRule (^\.|/\.) - [F]
-
-
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]

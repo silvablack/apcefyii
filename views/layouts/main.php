@@ -259,7 +259,9 @@ AppAsset::register($this);
   				<a class="fa fa-long-arrow-right" href="#"></a>
   			</div>
   			 Subcribe Email -->
-
+			<div class="col-md-12 col-lg-12 col-xs-12 text-center">
+				<script type="text/javascript" src="https://usuariosonline.s12.com.br/uo-Zab9W3YWdWc3Cz04-12-0.js"></script><br><a href="https://usuariosonline.s12.com.br/" target="_blank"><img src="https://usuariosonline.s12.com.br/selo/selo-uo.gif" alt="Contador de usuários online" border="0"></a>
+			</div>
   			<!-- Footer columns -->
   			<div class="theme-padding-top footer-column">
   				<div class="row">
