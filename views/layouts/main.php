@@ -229,7 +229,7 @@ AppAsset::register($this);
   						</div>
   					<ul id="ticker" class="ticker">
               <?php foreach($this->params['noticias'] as $n): ?>
-  							<li><span>Últimas Notícias:</span><?= StringHelper::truncate($n['titulo'],20) ?>: <?= strip_tags(StringHelper::truncate($n['noticia'],80)) ?></li>
+  							<li><span>Últimas Notícias:</span><?= StringHelper::truncate(utf8_encode($n['titulo']),20) ?>: <?= strip_tags(StringHelper::truncate(utf8_encode($n['noticia']),80)) ?></li>
               <?php endforeach ?>
   					</ul>
   				</div>
