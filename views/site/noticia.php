@@ -46,7 +46,7 @@ $this->registerJs("
           <div class="author-header">
             <h2><?= $model->titulo ?></h2>
             <div class="aurhor-img-name pull-left">
-              <span><?= Yii::$app->formatter->asDate($model->data, 'php:d/m/Y H:i:s') ?> </span>
+              <span><?= Yii::$app->formatter->asDate($model->data, 'php:d/m/Y H') ?> h<span style="display:inline;text-transform:lowercase">rs</span> </span>
             </div>
             <div class="share-option pull-right">
             </div>
