@@ -76,8 +76,8 @@ class SiteController extends Controller
             ->queryAll();
       $lastnews = Noticias::find()->orderBy('data DESC')->limit(10)->all();
       $lastgames = Jogos::find()->orderBy('data_jogo')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
-
-      return $this->render('index', ['noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);
+      $noticias_grid = Noticias::find()->joinWith(['noticiasImgs'])->orderBy('id DESC')->limit(15)->all();
+      return $this->render('index', ['noticias_grid'=>$noticias_grid,'noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);
     }
 
     public function actionNoticias($categoria){

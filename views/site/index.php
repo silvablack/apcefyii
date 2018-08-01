@@ -59,12 +59,10 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                 <!-- latest-news Slider -->
 
               </div>
-            </div>
-            <!-- Latest News -->
 
-            <!-- SIDEBAR BOX -->
-            <div class="row">
-                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:10px;">
+                      <!-- SIDEBAR BOX -->
+                      <div class="row">
+                    <div class="col-md-4 col-lg-4 col-xs-10" style="margin-top:1em";>
                         <p style="font-weight:bold;text-transform:uppercase">Baixe nosso aplicativo</p>
                         <a target="_blank" href='https://play.google.com/store/apps/details?id=br.com.goldeplacama.android&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
                         <img style="width:100%;" alt='Disponível no Google Play'
@@ -80,6 +78,54 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
                   </div>
 
                 </div>
+
+					
+					<!-- Blog Content -->
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 r-full-width theme-padding-top"> 
+
+						<!-- Blog Grid View -->
+						<div class="blog-grid-view">
+							<div class="row">
+                <?php foreach($noticias_grid as $ng): ?>
+								<!-- Post Img -->
+								<div class="col-lg-4 col-xs-12">
+
+									<!-- Post Img -->
+									<div class="large-post-img">
+                    <?php if(isset($ng->noticiasImgs)): ?>
+                    <?php foreach($ng->noticiasImgs as $img): ?>
+                    <?= Html::img('@web/images/gallery/'.$img->src) ?>
+                    <?php break; ?>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+									</div>
+									<!-- Post Img -->
+
+									<!-- Post Detail -->
+									<div class="large-post-detail style-3">
+										<span class="red-color"><?= $ng->titulo ?></span>
+										<h2><?= Html::a(StringHelper::truncate(strip_tags($ng->noticia), 70),['site/noticia','id'=>$ng->id]) ?></h2>
+									</div>
+									<!-- Post Detail -->
+
+									<!-- Post Detail Bottom -->
+									<div class="detail-btm">
+										<span>em <?= Yii::$app->formatter->asDate($ng->data,'php:d/m/Y') ?> </span>
+									</div>
+									<!-- Post Detail Bottom -->
+
+								</div>
+                <!-- Post Img -->
+                <?php endforeach; ?>
+                
+							</div>
+						</div>
+						<!-- Blog Grid View -->
+
+					</div>
+					<!-- Blog Content -->
+            </div>
+            <!-- Latest News -->
 
             <!-- Upcoming Fixture -->
             <div class="col-lg-4 col-sm-12 col-xs-12 r-full-width">
