@@ -88,13 +88,13 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 							<div class="row">
                 <?php foreach($noticias_grid as $ng): ?>
 								<!-- Post Img -->
-								<div class="col-lg-4 col-xs-12">
+								<div class="col-lg-4 col-xs-12" style="height:350px;margin-bottom:10px;">
 
 									<!-- Post Img -->
 									<div class="large-post-img">
                     <?php if(isset($ng->noticiasImgs)): ?>
                     <?php foreach($ng->noticiasImgs as $img): ?>
-                    <?= Html::img('@web/images/gallery/'.$img->src) ?>
+                    <?= Html::img('@web/images/gallery/'.$img->src,['class'=>'img-responsive','style'=>'width:220px;height:150px;']) ?>
                     <?php break; ?>
                     <?php endforeach; ?>
                     <?php endif; ?>
@@ -103,8 +103,8 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 
 									<!-- Post Detail -->
 									<div class="large-post-detail style-3">
-										<span class="red-color"><?= $ng->titulo ?></span>
-										<h2><?= Html::a(StringHelper::truncate(strip_tags($ng->noticia), 70),['site/noticia','id'=>$ng->id]) ?></h2>
+										<span><?= Html::a(StringHelper::truncate(strip_tags($ng->titulo), 30),['site/noticia','id'=>$ng->id],['class'=>'red-color']) ?></span>
+										<h2><?= Html::a(StringHelper::truncate(strip_tags($ng->noticia), 40),['site/noticia','id'=>$ng->id]) ?></h2>
 									</div>
 									<!-- Post Detail -->
 
@@ -123,7 +123,8 @@ $this->title = 'APCEF - Associação do Pessoal da Caixa Econômica Federal';
 						<!-- Blog Grid View -->
 
 					</div>
-					<!-- Blog Content -->
+          <!-- Blog Content -->
+          
             </div>
             <!-- Latest News -->
 
