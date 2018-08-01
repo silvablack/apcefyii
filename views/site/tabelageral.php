@@ -49,10 +49,10 @@ h5{
 											<h5><?= $jogos[0]->fase ?></h5>
 											</td>
 											<td colspan="2" style="width:33.33%;">
-												<h3>Eusébio FIlho</h3>
+												<h3>Eusébio Filho</h3>
 												<p>Diretor de Esportes</p>
 												<hr />
-												<h3>Filon Monteiro/Francielo</h3>
+												<h3>Filon Monteiro/Francieldo</h3>
 												<p>Coordenação</p>
 											</td>
 										</tr>
