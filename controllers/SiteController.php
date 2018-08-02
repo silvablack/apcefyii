@@ -75,7 +75,7 @@ class SiteController extends Controller
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
       $lastnews = Noticias::find()->orderBy('data DESC')->limit(10)->all();
-      $lastgames = Jogos::find()->orderBy('data_jogo')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
+      $lastgames = Jogos::find()->orderBy('data_jogo, hora')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
       $noticias_grid = Noticias::find()->joinWith(['noticiasImgs'])->orderBy('id DESC')->limit(15)->all();
       return $this->render('index', ['noticias_grid'=>$noticias_grid,'noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);
     }
