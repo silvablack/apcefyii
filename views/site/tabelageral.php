@@ -41,7 +41,7 @@ h5{
 												<h3>Giselle Menezes</h3>
 												<p>Presidente</p>
 											</td>
-											<td colspan="2" style="width:33.33%;vertical-align: middle;">
+											<td colspan="3" style="width:33.33%;vertical-align: middle;">
 											<?= Html::img('@web/media-files/logo_32.jpg',
 												['class'=>'img-responsive','style'=>'width:50%;height:50%;margin:5px auto;']
 											);
@@ -57,12 +57,13 @@ h5{
 											</td>
 										</tr>
 										<tr>
-											<td colspan="6"><h4><?= $rodada ?></h4></td>
+											<td colspan="7"><h4><?= $rodada ?></h4></td>
 										</tr>
 										<tr>
 											<th>JOGO</th>
 											<th>DATA/DIA/HORA</th>
 											<th>SÉRIE</th>
+											<th>FASE</th>
 											<th>EQUIPE</th>
 											<th>PLACAR</th>
 											<th>EQUIPE</th>
@@ -73,6 +74,7 @@ h5{
 										<tr>
 											<td><?= Html::a($j->njg, ['site/sumula', 'jogo'=>$j->codigo]) ?></td>
 											<td><?= Yii::$app->formatter->asDate($j->data_jogo, 'd/M/Y')." ".$j->dia." ".$j->hora ?></td>
+											<td><?= $j->fase ?></td>
 											<td><?= $j->categoria ?></td>
 											<td><?= Html::a($j->equipe1, ['site/sumula', 'jogo'=>$j->njg]) ?></td>
 											<td>
@@ -84,7 +86,7 @@ h5{
 										</tr>
 									<?php endforeach; ?>
 									<tr class="bg-info">
-										<td colspan="6">JOGOS NA RODADA: <?php echo count($jogos) ?></td>
+										<td colspan="7">TOTAL DE JOGOS: <?php echo count($jogos) ?></td>
 									</tr>
 									</tbody>
 								</table>
