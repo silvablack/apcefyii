@@ -62,8 +62,8 @@ h5{
 										<tr>
 											<th>JOGO</th>
 											<th>DATA/DIA/HORA</th>
-											<th>SÉRIE</th>
 											<th>FASE</th>
+											<th>CATEGORIA</th>
 											<th>EQUIPE</th>
 											<th>PLACAR</th>
 											<th>EQUIPE</th>

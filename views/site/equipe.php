@@ -13,6 +13,9 @@ $this->title = $equipe->equipe.' - APCEF';
     <div class="match-detail-content" style="padding-top:2vh;">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 theme-padding-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 theme-padding-bottom">
+               <?= Html::img('@web/media-files/fotos/'.$equipe->equipe.'.jpg',['class'=>'img-responsive','style'=>'width:400px;height:350px;display:block;margin:auto;']) ?>
+            </div>
             <div class="col-lg-8 table-responsive">
               <h4><?= $equipe->equipe ?> - RELAÇÃO DE JOGADORES</h4>
               <table class="table table-striped table-hover table-condensed">
