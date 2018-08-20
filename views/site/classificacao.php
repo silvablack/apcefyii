@@ -91,7 +91,7 @@ $this->title = $categoria.' - APCEF';
             </table>
             </div>
             <div class="col-lg-6 table-responsive">
-              <h4>Artilheiros série ouro <small>Clique sobre o atleta</small></h4>
+              <h4>Artilheiros <small>Clique sobre o atleta</small></h4>
               <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th></th>

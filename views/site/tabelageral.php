@@ -76,13 +76,17 @@ h5{
 											<td><?= Yii::$app->formatter->asDate($j->data_jogo, 'd/M/Y')." ".$j->dia." ".$j->hora ?></td>
 											<td><?= $j->fase ?></td>
 											<td><?= $j->categoria ?></td>
-											<td><?= Html::a($j->equipe1, ['site/sumula', 'jogo'=>$j->njg]) ?></td>
 											<td>
-												<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe1.'.bmp',['style'=>'width:36px;height:36px;']) ?>
-												<?= $j->placar1 ?> x <?= $j->placar2 ?>
-												<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe2.'.bmp',['style'=>'width:36px;height:36px;']) ?>
+											<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe1.'.bmp',['style'=>'width:36px;height:36px;']) ?>
+												<?= Html::a($j->equipe1, ['site/sumula', 'jogo'=>$j->njg]) ?>
 											</td>
-											<td><?= Html::a($j->equipe2, ['site/sumula', 'jogo'=>$j->njg]) ?></td>
+											<td>
+												<?= $j->placar1 ?> x <?= $j->placar2 ?>
+											</td>
+											<td>
+											<?= Html::img(Yii::getAlias('@web').'/media-files/logo/'.$j->equipe2.'.bmp',['style'=>'width:36px;height:36px;']) ?>
+											<?= Html::a($j->equipe2, ['site/sumula', 'jogo'=>$j->njg]) ?>
+											</td>
 										</tr>
 									<?php endforeach; ?>
 									<tr class="bg-info">
