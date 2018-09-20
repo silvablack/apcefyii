@@ -29,12 +29,12 @@ h5{
 
 					  <!-- Piont Table -->
 					  <div class="macth-fixture">
-              <div class="pull-right">
-                <?= Html::dropDownList('filter',null,ArrayHelper::merge(["all"=>"TODAS"],ArrayHelper::map($rodadas, 'rodada', 'rodada')), ['prompt'=>'Selecione a rodada', 'id'=>'filter']) ?>
-              </div>
+						<div class="pull-right">
+							<?= Html::dropDownList('filter',null,ArrayHelper::merge(["all"=>"TODAS"],ArrayHelper::map($rodadas, 'rodada', 'rodada')), ['prompt'=>'Selecione a rodada', 'id'=>'filter']) ?>
+						</div>
 						<h3 style="margin:0 0 30px"><?= $categoria->categoria ?> - TABELA GERAL</h3>
 						<div class="table-responsive">
-              <table class="table table-bordered table-hover text-center">
+              					<table class="table table-bordered table-hover text-center">
 									<thead>
 										<tr>
 											<td colspan="2" style="width:33.33%;vertical-align: middle;">
@@ -95,8 +95,8 @@ h5{
 									</tbody>
 								</table>
 								</div>
-              </div>
-              <!-- Match Result Contenet -->
-              </div>
-              </div>
+              			</div>
+              			<!-- Match Result Contenet -->
+              		</div>
+              	</div>
               </div>
