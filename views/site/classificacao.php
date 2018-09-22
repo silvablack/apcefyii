@@ -1,9 +1,16 @@
 <?php
 use yii\helpers\StringHelper;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 $this->params['noticias'] = $noticias;
 $this->title = $categoria.' - APCEF';
+$this->registerJs("
+$('#filter').change(function(){
+	window.location.href = '../site/classificacao?param=".$param."&chave='+this.value;
+	console.log(this.value);
+});
+", yii\web\View::POS_LOAD);
 ?>
 <!-- Match Result -->
 <div class="white-bg">
@@ -15,7 +22,10 @@ $this->title = $categoria.' - APCEF';
 						['class'=>'img-responsive logo-campeonato','style'=>'width:15em;margin:5px auto;']
 					);
 			?>
-        <h2>CLASSIFICAÇÃO <?= $categoria ?></h2>
+        <h2>CLASSIFICAÇÃO <?= $categoria ?> | Chave: <?= $chave ?></h2>
+        <div class="pull-right" style="padding-top:10px;padding-right:5px;">
+							<?= Html::dropDownList('filter',null,ArrayHelper::map($chaves, 'chave', 'chave'), ['prompt'=>'SELECIONE A CHAVE', 'id'=>'filter']) ?>
+				</div>
         <p><h4>Scout de classificações</h4></p>
         <!-- Piont Table -->
         <div class="macth-fixture">

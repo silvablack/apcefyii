@@ -205,7 +205,7 @@ class SiteController extends Controller
 
     }
 
-    public function actionClassificacao($param){
+    public function actionClassificacao($param, $chave = 'A'){
       $categoria = [
         'cinquentao'=>'CINQUENTÃO',
         'quarentao'=>'QUARENTÃO',
@@ -217,24 +217,26 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-
-      $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('class')->andWhere(['>', 'class', 0])->all();
-      $sqlAtk = 'SELECT * FROM equipes WHERE categoria = :cat AND GP > :gols ORDER BY GP DESC';
-      $atakMaisPositivo = Equipes::findBySql($sqlAtk,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
-      $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('GC')->andWhere(['>', 'GC', 0])->all();
-      $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param]])->orderBy('classificacao_disciplinar')->andWhere(['>', 'classificacao_disciplinar', 0])->all();
       
-      $sqlArt = 'SELECT * FROM jogadores WHERE categoria = :cat AND gols > :gols ORDER BY gols DESC LIMIT 10';
-      $artilheiros = Jogadores::findBySql($sqlArt,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
-      
-      $sqlGolsContra = 'SELECT * FROM jogadores WHERE categoria = :cat AND gol_contra > :gols ORDER BY gol_contra DESC LIMIT 10';
-      $golsContra = Jogadores::findBySql($sqlGolsContra,[':gols'=>'0', ':cat'=>$categoria[$param]])->all();
 
-      $sqlGolArt = 'SELECT * FROM jogadores WHERE categoria = :cat AND jgd = :jgd AND gols > :gols ORDER BY gols DESC LIMIT 10';
-      $goleirosArtilheiros = Jogadores::findBySql($sqlGolArt,[':gols'=>'0', ':cat'=>$categoria[$param],':jgd'=>'Gol'])->all();
+      $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param], 'chave'=>$chave])->orderBy('class')->andWhere(['>', 'class', 0])->all();
+      $sqlAtk = 'SELECT * FROM equipes WHERE chave = :chave AND categoria = :cat AND GP > :gols ORDER BY GP DESC';
+      $atakMaisPositivo = Equipes::findBySql($sqlAtk,[':gols'=>'0', 'chave'=>$chave, ':cat'=>$categoria[$param]])->all();
+      $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param], 'chave'=>$chave])->orderBy('GC')->andWhere(['>', 'GC', 0])->all();
+      $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param], 'chave'=>$chave])->orderBy('classificacao_disciplinar')->andWhere(['>', 'classificacao_disciplinar', 0])->all();
+    
+      $sqlArt = 'SELECT J.nome_jogador, J.gols, J.amarelo, J.vermelho, J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.gols > :gols ORDER BY J.gols DESC LIMIT 10';
+      $artilheiros = Jogadores::findBySql($sqlArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param]])->all();
+      
+      $sqlGolsContra = 'SELECT J.nome_jogador, J.gol_contra, J.partidas,  J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.gol_contra > :gols ORDER BY J.gol_contra DESC LIMIT 10';
+      $golsContra = Jogadores::findBySql($sqlGolsContra,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param]])->all();
+
+      $sqlGolArt = 'SELECT J.nome_jogador, J.gol_contra, J.partidas,  J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.jgd = :jgd AND gols > :gols ORDER BY J.gols DESC LIMIT 10';
+      $goleirosArtilheiros = Jogadores::findBySql($sqlGolArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param],':jgd'=>'Gol'])->all();
 
       return $this->render('classificacao', [
         'noticias'=>$noticias,
+        'param'=>$param,
         'categoria'=>$categoria[$param],
         'classificacao'=>$classificacao,
         'atakMaisPositivo'=>$atakMaisPositivo,
@@ -242,7 +244,9 @@ class SiteController extends Controller
         'classDisciplinar'=>$classDisciplinar,
         'artilheiros'=>$artilheiros,
         'golsContra'=>$golsContra,
-        'goleirosArtilheiros'=>$goleirosArtilheiros
+        'goleirosArtilheiros'=>$goleirosArtilheiros,
+        'chaves'=>Equipes::find()->select('chave')->groupBy('chave')->all(),
+        'chave'=>$chave
       ]);
     }
 
