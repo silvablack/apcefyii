@@ -231,7 +231,7 @@ class SiteController extends Controller
       $sqlGolsContra = 'SELECT J.nome_jogador, J.gol_contra, J.partidas,  J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.gol_contra > :gols ORDER BY J.gol_contra DESC LIMIT 10';
       $golsContra = Jogadores::findBySql($sqlGolsContra,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param]])->all();
 
-      $sqlGolArt = 'SELECT J.nome_jogador, J.gol_contra, J.partidas,  J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.jgd = :jgd AND gols > :gols ORDER BY J.gols DESC LIMIT 10';
+      $sqlGolArt = 'SELECT J.nome_jogador, J.partidas,  J.time, J.id, J.gols FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.jgd = :jgd AND gols > :gols ORDER BY J.gols DESC LIMIT 10';
       $goleirosArtilheiros = Jogadores::findBySql($sqlGolArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param],':jgd'=>'Gol'])->all();
 
       return $this->render('classificacao', [
