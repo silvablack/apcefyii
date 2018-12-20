@@ -28,10 +28,11 @@ $this->title = $equipe->equipe.' - APCEF';
                 <th scope="col"><div style="width:24px;height:24px;background-color:yellow"></div></th>
                 <th scope="col"><div style="width:24px;height:24px;background-color:red"></div></th>
                 <th scope="col">Suspenso</th>
+                <th scope="col">Atestado</th>
                 </thead>
                 <tbody>
                   <?php foreach($jogadores as $j): ?>
-                  <tr>
+                  <tr style="<?= $j->at == 'AT' ? 'background-color: #069;color:#fff;font-weight:bold;':'' ?>">
                       <td><?= $j->situacao_atleta ?></td>
                       <td><?= $j->master ?></td>
                       <td><?= $j->jgd ?></td>
@@ -40,18 +41,22 @@ $this->title = $equipe->equipe.' - APCEF';
                       <td><?= $j->amarelo ?></td>
                       <td><?= $j->vermelho ?></td>
                       <td><?= $j->cartao ?></td>
+                      <td><?= $j->at === 'AT' ? $j->at : $j->at ?></td>
                   </tr>
                 <?php endforeach; ?>
                 </tbody>
-                <tfoot>
+                <tfoot style="text-align: center">
                   <tr>
-                    <td colspan="8">Total jogadores: <?= count((array)$jogadores); ?></td>
+                    <td colspan="9">Total jogadores: <?= count((array)$jogadores); ?></td>
                   </tr>
                   <tr>
-                    <td colspan="8" style="background-color: #46a546;color:#fff;">Técnico: <?php echo $equipe->tecnico ?></td>
+                    <td colspan="9" style="background-color: #069;color: #fff;font-weight:bold;">AT = PENDENTE DE ATESTADO</td>
                   </tr>
                   <tr>
-                    <td colspan="8">Coordenação: Filon Monteiro</td>
+                    <td colspan="9" style="background-color: #46a546;color:#fff;">Técnico: <?php echo $equipe->tecnico ?></td>
+                  </tr>
+                  <tr>
+                    <td colspan="9">Coordenação: Filon Monteiro</td>
                   </tr>
                 </tfoot>
                 </table>
