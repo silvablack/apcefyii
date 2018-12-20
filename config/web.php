@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'language'=>'pt-BR',
+    'language'=>'pt-Br',
     'name'=>'APCEF MA',
     'version'=>'1.0',
     'basePath' => dirname(__DIR__),
@@ -67,7 +67,9 @@ $config = [
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'BRA',
-            'locale'=>'pt-BR'
+            'locale'=>'pt-BR',
+            'defaultTimeZone'=>'UTC',
+            'timeZone'=>'America/Belem',
        ],
 
     ],

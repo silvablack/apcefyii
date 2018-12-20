@@ -27,7 +27,7 @@ $this->title = 'PAUTA DE JULGAMENTO - APCEF';
 											<p><h2><?= $campeonato->nome ?></h2></p>
 											<p><h3><?= $campeonato->trofeu ?></h3></p>
 											<p><h3>Atletas a serem julgados</h3></p>
-											<p><h4>Data do Julgamento: <?= Yii::$app->formatter->asDate($infoj->data, 'php:d \d\e M  \d\e Y à\s H:i:s') ?></h4></p>
+											<p><h4>Data do Julgamento: <?= Yii::$app->formatter->asDatetime($infoj->data, 'php:d \d\e M  \d\e Y à\s H:i:s') ?></h4></p>
 										</td>
 								  </tr>
 								</table>
