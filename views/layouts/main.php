@@ -105,10 +105,9 @@ AppAsset::register($this);
   											<div class="blog-categories">
   											<h2>Categorias</h2>
   												<ul class="blog-categories-list">
-  													<li><?= Html::a('Livre Prata', ['site/noticias','categoria'=>1]); ?></li>
-  								    			<li><?= Html::a('Livre Ouro', ['site/noticias','categoria'=>2]); ?></li>
-  								    			<li><?= Html::a('Quarentão', ['site/noticias','categoria'=>3]); ?></li>
-  								    			<li><?= Html::a('Cinquentão', ['site/noticias','categoria'=>4]); ?></li>
+												  <?php foreach($this->params['categorias'] as $categoria): ?>
+  													<li><?= Html::a($categoria->categoria, ['site/noticias','categoria'=>$categoria->id]); ?></li>
+												  <?php endforeach; ?>
   												</ul>
   											</div>
   										</div>
@@ -154,10 +153,9 @@ AppAsset::register($this);
   						<li>
   								<a href="#">Tabelas</a>
   								<ul>
-  									<li><?= Html::a('Livre Prata',['site/tabelageral','categoria'=>1]) ?></li>
-  									<li><?= Html::a('Livre Ouro',['site/tabelageral','categoria'=>2]) ?></li>
-  									<li><?= Html::a('Quarentão',['site/tabelageral','categoria'=>3]) ?></li>
-  									<li><?= Html::a('Cinquentão',['site/tabelageral','categoria'=>4]) ?></li>
+								  <?php foreach($this->params['categorias'] as $categoria): ?>
+  									<li><?= Html::a($categoria->categoria,['site/tabelageral','categoria'=>$categoria->id]) ?></li>
+								  <?php endforeach; ?>
   								</ul>
   						</li>
   						<li>
@@ -171,10 +169,9 @@ AppAsset::register($this);
   						<li>
   								<a href="#">Scouts</a>
   								<ul>
-                    <li><?= Html::a('Livre Prata',['site/classificacao','param'=>'livre-prata']) ?></li>
-                    <li><?= Html::a('Livre Ouro',['site/classificacao','param'=>'livre-ouro']) ?></li>
-  									<li><?= Html::a('Quarentão',['site/classificacao','param'=>'quarentao']) ?></li>
-  									<li><?= Html::a('Cinquentão',['site/classificacao','param'=>'cinquentao']) ?></li>
+								  <?php foreach($this->params['categorias'] as $categoria): ?>
+                    				<li><?= Html::a($categoria->categoria,['site/classificacao','categoria'=>$categoria->id]) ?></li>
+								  <?php endforeach; ?>
   								</ul>
   						</li>
   						<li><a href="#">Regulamento</a>
@@ -383,10 +380,9 @@ AppAsset::register($this);
   		<li>
   			<a data-toggle="collapse" href="#list-2"><i class="pull-right fa fa-angle-down"></i>Notícias</a>
   			<ul class="collapse" id="list-2">
-          <li><?= Html::a('Livre Prata', ['site/noticias','categoria'=>1]); ?></li>
-  				<li><?= Html::a('Livre Ouro', ['site/noticias','categoria'=>2]); ?></li>
-  				<li><?= Html::a('Quarentão', ['site/noticias','categoria'=>3]); ?></li>
-  				<li><?= Html::a('Cinquentão', ['site/noticias','categoria'=>4]); ?></li>
+			  <?php foreach($this->params['categorias'] as $categoria): ?>
+                    <li><?= Html::a($categoria->categoria,['site/noticias','categoria'=>$categoria->id]) ?></li>
+			  <?php endforeach; ?>
   			</ul>
   		</li>
   		<li>
@@ -406,10 +402,9 @@ AppAsset::register($this);
   		<li>
   			<a data-toggle="collapse" href="#list-4"><i class="pull-right fa fa-angle-down"></i>Tabelas</a>
   			<ul class="collapse" id="list-4">
-          <li><?= Html::a('Livre Prata',['site/tabelageral','categoria'=>1]) ?></li>
-  				<li><?= Html::a('Livre Ouro',['site/tabelageral','categoria'=>2]) ?></li>
-  				<li><?= Html::a('Quarentão',['site/tabelageral','categoria'=>3]) ?></li>
-  				<li><?= Html::a('Cinquentão',['site/tabelageral','categoria'=>4]) ?></li>
+			  <?php foreach($this->params['categorias'] as $categoria): ?>
+                    <li><?= Html::a($categoria->categoria,['site/tabelageral','categoria'=>$categoria->id]) ?></li>
+			  <?php endforeach; ?>
   			</ul>
   		</li>
   		<li>
@@ -423,10 +418,9 @@ AppAsset::register($this);
   		<li>
   			<a data-toggle="collapse" href="#list-6"><i class="pull-right fa fa-angle-down"></i>Scouts</a>
   			<ul class="collapse" id="list-6">
-          <li><?= Html::a('Livre Prata',['site/classificacao','param'=>'livre-prata']) ?></li>
-          <li><?= Html::a('Livre Ouro',['site/classificacao','param'=>'livre-ouro']) ?></li>
-  				<li><?= Html::a('Quarentão',['site/classificacao','param'=>'quarentao']) ?></li>
-  				<li><?= Html::a('Cinquentão',['site/classificacao','param'=>'cinquentao']) ?></li>
+			  <?php foreach($this->params['categorias'] as $categoria): ?>
+                    <li><?= Html::a($categoria->categoria,['site/classificacao','categoria'=>$categoria->id]) ?></li>
+			  <?php endforeach; ?>
   			</ul>
   		</li>
   		<li>

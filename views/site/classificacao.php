@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 $this->params['noticias'] = $noticias;
-$this->title = $categoria.' - APCEF';
+$this->title = $categoria->categoria.' - APCEF';
 $this->registerJs("
 $('#filter').change(function(){
-	window.location.href = '../site/classificacao?param=".$param."&chave='+this.value;
+	window.location.href = '../site/classificacao?categoria=".$categoria->id."&chave='+this.value;
 	console.log(this.value);
 });
 ", yii\web\View::POS_LOAD);
@@ -22,7 +22,7 @@ $('#filter').change(function(){
 						['class'=>'img-responsive logo-campeonato','style'=>'width:15em;margin:5px auto;']
 					);
 			?>
-        <h2>CLASSIFICAÇÃO <?= $categoria ?> | Chave: <?= $chave ?></h2>
+        <h2>CLASSIFICAÇÃO <?= $categoria->categoria ?> | Chave: <?= $chave ?></h2>
         <div class="pull-right" style="padding-top:10px;padding-right:5px;">
 							<?= Html::dropDownList('filter',null,ArrayHelper::map($chaves, 'chave', 'chave'), ['prompt'=>'SELECIONE A CHAVE', 'id'=>'filter']) ?>
 				</div>
@@ -31,7 +31,7 @@ $('#filter').change(function(){
         <div class="macth-fixture">
           <div class="row">
             <div class="col-lg-12 table-responsive">
-              <h4><?= $categoria ?> <small>Clique sobre a equipe para mais detalhes</small></h4>
+              <h4><?= $categoria->categoria ?> <small>Clique sobre a equipe para mais detalhes</small></h4>
               <table class="table table-striped table-hover table-condensed">
                 <tr>
                   <th>Esc.</th>

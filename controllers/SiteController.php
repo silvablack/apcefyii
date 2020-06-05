@@ -77,7 +77,9 @@ class SiteController extends Controller
       $lastnews = Noticias::find()->orderBy('data DESC')->limit(10)->all();
       $lastgames = Jogos::find()->orderBy('data_jogo, hora')->where(['lower(sema)'=>strtolower('semana')])->limit(24)->all();
       $noticias_grid = Noticias::find()->joinWith(['noticiasImgs'])->orderBy('id DESC')->limit(15)->all();
-      return $this->render('index', ['noticias_grid'=>$noticias_grid,'noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);
+      $categorias = Categoria::find()->all();
+      $this->view->params['categorias'] = $categorias;
+      return $this->render('index', ['categorias'=>$categorias,'noticias_grid'=>$noticias_grid,'noticias'=>$noticias, 'lastnews'=>$lastnews, 'lastgames'=>$lastgames]);
     }
 
     public function actionNoticias($categoria){
@@ -90,19 +92,13 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-
-            $translate_categoria = array(
-            	1=>'LIVRE PRATA',
-            	2=>'LIVRE OURO',
-            	3=>'QUARENTÃO',
-            	4=>'CINQUENTÃO'
-            );
-
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
       return $this->render('noticias',[
         'model'=>$model,
         'pages'=>$pages,
         'noticias'=>$noticias,
-        'categoria'=>$translate_categoria[$categoria]
+        'categorias'=>$categorias
       ]);
     }
 
@@ -112,9 +108,10 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
       $model = Noticias::find()->where(['noticias.id'=>$id])->joinWith(['noticiasImgs'])->one();
-      return $this->render('noticia',['model'=>$model, 'noticias'=>$noticias]);
+      return $this->render('noticia',['model'=>$model, 'noticias'=>$noticias, 'categorias'=>$categorias]);
     }
 
     public function actionAtestado($param){
@@ -129,7 +126,9 @@ class SiteController extends Controller
       }else{
         $model = Jogadores::find()->where(['lower(at)'=>strtolower('OK')])->orderBy('nome_jogador')->all();
       }
-      return $this->render('atestado',['noticias'=>$noticias, 'type'=>$param, 'model'=>$model]);
+      $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('atestado',['noticias'=>$noticias, 'type'=>$param, 'model'=>$model, 'categorias'=>$categorias]);
     }
 
     public function actionPdf($file){
@@ -144,7 +143,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-      return $this->render('futsal',['noticias'=>$noticias, 'ano'=>$ano]);
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('futsal',['noticias'=>$noticias, 'ano'=>$ano, 'categorias'=>$categorias]);
     }
 
     public function actionSociety($ano){
@@ -153,7 +154,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-      return $this->render('society',['noticias'=>$noticias, 'ano'=>$ano]);
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('society',['noticias'=>$noticias, 'ano'=>$ano, 'categorias'=>$categorias]);
     }
 
     public function actionTabelageral($categoria, $rodada = NULL){
@@ -174,8 +177,9 @@ class SiteController extends Controller
         $rodada = $rodada.'ª RODADA';
       }
       $rodadas = Jogos::find()->select('rodada')->where(['categoria'=>$categoria->categoria])->groupBy('rodada')->orderBy('rodada')->all();
-
-      return $this->render('tabelageral',['categoria'=>$categoria,'noticias'=>$noticias, 'rodadas'=>$rodadas, 'jogos'=>$jogos, 'rodada'=>$rodada]);
+      $categorias = Categoria::find()->all();
+      $this->view->params['categorias'] = $categorias;
+      return $this->render('tabelageral',['categorias'=>$categorias,'categoria'=>$categoria,'noticias'=>$noticias, 'rodadas'=>$rodadas, 'jogos'=>$jogos, 'rodada'=>$rodada]);
     }
 
     /**
@@ -191,27 +195,24 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
       if($param == 'julgamento'){
         $julgamento = Julgamento::find()->where(['LOWER(convocado)'=>'sim'])->orderBy('nome_jogador')->all();
         $rjulgamento = Julgamento::find()->where(['LOWER(resultado)'=>'r'])->orderBy('nome_jogador')->all();
-        return $this->render('julgamento', ['campeonato'=>$campeonato,'noticias'=>$noticias,'infoj'=>InfoJulgamento::find()->one(), 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
+        return $this->render('julgamento', ['categorias'=>$categorias,'campeonato'=>$campeonato,'noticias'=>$noticias,'infoj'=>InfoJulgamento::find()->one(), 'julgamento'=>$julgamento,'rjulgamento'=>$rjulgamento, 'param'=>$param]);
       }elseif($param == 'suspensos'){
         $suspensos = Jogadores::find()->where(['LOWER(cartao)'=>'suspenso'])->orderBy('nome_jogador')->all();
-        return $this->render('suspensos', ['campeonato'=>$campeonato,'noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);
+        return $this->render('suspensos', ['categorias'=>$categorias,'campeonato'=>$campeonato,'noticias'=>$noticias, 'suspensos'=>$suspensos, 'param'=>$param]);
       }elseif($param == 'pendurados'){
         $pendurados = Jogadores::find()->where(['LOWER(cartao)'=>'pendurado'])->orderBy('nome_jogador')->all();
-        return $this->render('pendurados', ['campeonato'=>$campeonato,'noticias'=>$noticias, 'pendurados'=>$pendurados, 'param'=>$param]);
+        return $this->render('pendurados', ['categorias'=>$categorias,'campeonato'=>$campeonato,'noticias'=>$noticias, 'pendurados'=>$pendurados, 'param'=>$param]);
       }
 
     }
 
-    public function actionClassificacao($param, $chave = 'A'){
-      $categoria = [
-        'cinquentao'=>'CINQUENTÃO',
-        'quarentao'=>'QUARENTÃO',
-        'livre-ouro'=>'LIVRE-OURO',
-        'livre-prata'=>'LIVRE-PRATA'
-      ];
+    public function actionClassificacao($categoria, $chave = 'A'){
+      $categoriaModel = Categoria::find()->where(['id'=>$categoria])->one();
       $this->layout = 'interno';
       //MENU NOTICIAS LAYOUT
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
@@ -219,25 +220,25 @@ class SiteController extends Controller
             ->queryAll();
       
 
-      $classificacao = Equipes::find()->where(['categoria'=>$categoria[$param], 'chave'=>$chave])->orderBy('class')->andWhere(['>', 'class', 0])->all();
+      $classificacao = Equipes::find()->where(['categoria'=>$categoriaModel->categoria, 'chave'=>$chave])->orderBy('class')->andWhere(['>', 'class', 0])->all();
       $sqlAtk = 'SELECT * FROM equipes WHERE chave = :chave AND categoria = :cat AND GP > :gols ORDER BY GP DESC';
-      $atakMaisPositivo = Equipes::findBySql($sqlAtk,[':gols'=>'0', 'chave'=>$chave, ':cat'=>$categoria[$param]])->all();
-      $melhorDefesa = Equipes::find()->where(['categoria'=>$categoria[$param], 'chave'=>$chave])->orderBy('GC')->andWhere(['>', 'GC', 0])->all();
-      $classDisciplinar = Equipes::find()->where(['categoria'=>$categoria[$param], 'chave'=>$chave])->orderBy('classificacao_disciplinar')->andWhere(['>', 'classificacao_disciplinar', 0])->all();
+      $atakMaisPositivo = Equipes::findBySql($sqlAtk,[':gols'=>'0', 'chave'=>$chave, ':cat'=>$categoriaModel->categoria])->all();
+      $melhorDefesa = Equipes::find()->where(['categoria'=>$categoriaModel->categoria, 'chave'=>$chave])->orderBy('GC')->andWhere(['>', 'GC', 0])->all();
+      $classDisciplinar = Equipes::find()->where(['categoria'=>$categoriaModel->categoria, 'chave'=>$chave])->orderBy('classificacao_disciplinar')->andWhere(['>', 'classificacao_disciplinar', 0])->all();
     
       $sqlArt = 'SELECT J.nome_jogador, J.gols, J.amarelo, J.vermelho, J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.gols > :gols ORDER BY J.gols DESC LIMIT 10';
-      $artilheiros = Jogadores::findBySql($sqlArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param]])->all();
+      $artilheiros = Jogadores::findBySql($sqlArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoriaModel->categoria])->all();
       
       $sqlGolsContra = 'SELECT J.nome_jogador, J.gol_contra, J.partidas,  J.time, J.id FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.gol_contra > :gols ORDER BY J.gol_contra DESC LIMIT 10';
-      $golsContra = Jogadores::findBySql($sqlGolsContra,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param]])->all();
+      $golsContra = Jogadores::findBySql($sqlGolsContra,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoriaModel->categoria])->all();
 
       $sqlGolArt = 'SELECT J.nome_jogador, J.partidas,  J.time, J.id, J.gols FROM jogadores as J INNER JOIN equipes as E ON E.equipe = J.time WHERE E.chave = :chave AND J.categoria = :cat AND J.jgd = :jgd AND gols > :gols ORDER BY J.gols DESC LIMIT 10';
-      $goleirosArtilheiros = Jogadores::findBySql($sqlGolArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoria[$param],':jgd'=>'Gol'])->all();
-
+      $goleirosArtilheiros = Jogadores::findBySql($sqlGolArt,[':gols'=>'0', ':chave'=>$chave, ':cat'=>$categoriaModel->categoria,':jgd'=>'Gol'])->all();
+      $categorias = Categoria::find()->all();
+      $this->view->params['categorias'] = $categorias;
       return $this->render('classificacao', [
         'noticias'=>$noticias,
-        'param'=>$param,
-        'categoria'=>$categoria[$param],
+        'categoria'=>$categoriaModel,
         'classificacao'=>$classificacao,
         'atakMaisPositivo'=>$atakMaisPositivo,
         'melhorDefesa'=>$melhorDefesa,
@@ -246,7 +247,8 @@ class SiteController extends Controller
         'golsContra'=>$golsContra,
         'goleirosArtilheiros'=>$goleirosArtilheiros,
         'chaves'=>Equipes::find()->select('chave')->groupBy('chave')->all(),
-        'chave'=>$chave
+        'chave'=>$chave,
+        'categorias'=>$categorias
       ]);
     }
 
@@ -260,7 +262,9 @@ class SiteController extends Controller
       $sql = 'SELECT * FROM jogos WHERE categoria = :categoria AND (equipe1 = :eq OR equipe2 = :eq) ORDER BY data_jogo, hora';
       $jogos = Jogos::findBySql($sql,[':categoria'=>$equipe->categoria, ':eq'=>$equipe->equipe])->all();
       $jogadores = Jogadores::find()->where(['time'=>$equipe->equipe, 'categoria'=>$equipe->categoria])->orderBy('nome_jogador')->all();
-      return $this->render('equipe', ['noticias'=>$noticias,'jogadores'=>$jogadores, 'jogos'=>$jogos, 'equipe'=>$equipe]);
+      $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('equipe', ['categorias'=>$categorias,'noticias'=>$noticias,'jogadores'=>$jogadores, 'jogos'=>$jogos, 'equipe'=>$equipe]);
     }
 
     public function actionTabelagol($id){
@@ -269,7 +273,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-      return $this->render('embreve', ['noticias'=>$noticias]);
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('embreve', ['noticias'=>$noticias, 'categorias'=>$categorias]);
     }
 
     public function actionGol($id){
@@ -278,7 +284,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-      return $this->render('embreve', ['noticias'=>$noticias]);
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('embreve', ['noticias'=>$noticias, 'categorias'=>$categorias]);
     }
 
     public function actionSumula($jogo){
@@ -287,7 +295,9 @@ class SiteController extends Controller
       $noticias = Yii::$app->db->createCommand('SELECT n.id, n.categoria, n.titulo, n.noticia, (SELECT src FROM noticias_img nm WHERE nm.noticia_id = n.id  LIMIT 1) as src FROM noticias n 
       INNER JOIN (SELECT max(id) as nid, categoria FROM noticias GROUP BY categoria) nw ON nw.nid = n.id')
             ->queryAll();
-      return $this->render('embreve', ['noticias'=>$noticias]);
+            $categorias = Categoria::find()->all();
+            $this->view->params['categorias'] = $categorias;
+      return $this->render('embreve', ['noticias'=>$noticias, 'categorias'=>$categorias]);
     }
 
     /**
@@ -310,7 +320,7 @@ class SiteController extends Controller
         }
         return $this->render('contato', [
             'model' => $model,
-            'noticias' => $noticias
+            'noticias' => $noticias, 'categorias'=>Categoria::find()->all()
         ]);
     }
 
